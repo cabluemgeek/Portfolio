@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Ride-Hailing Fee Prediction - Kamelia ZENATI Portfolio</title>
-  <meta name="description" content="Ride-hailing analytics on Algerian trip data: rider segmentation, driver KPIs, interactive geo map, and fee prediction.">
-  <meta name="keywords" content="data science, machine learning, ride-hailing, fee prediction, Algeria">
+  <title>Institutional Market Risk Dashboard - Project Details</title>
+  <meta name="description" content="Equal-weighted multi-asset portfolio risk analytics: VaR, Expected Shortfall, stress testing, and Monte Carlo simulation in a live Streamlit dashboard.">
+  <meta name="keywords" content="market risk, value at risk, VaR, expected shortfall, stress testing, monte carlo, portfolio risk, Streamlit, data science, finance">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -26,6 +26,10 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+
+ <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
+
+
 
   <style>
     /* small additions for this page only — chart embeds and the live app frame */
@@ -152,8 +156,6 @@
     }
   </style>
 
-  <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
-
 </head>
 
 <body class="portfolio-details-page">
@@ -208,8 +210,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio Details</h2>
-        <p>Ride-hailing analytics and fee prediction on Algerian trip data</p>
+        <h2>Institutional Market Risk Dashboard</h2>
+        <p>Equal-weighted multi-asset portfolio analytics — volatility, VaR, stress testing, and Monte Carlo simulation</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -235,27 +237,27 @@
                 }
               </script>
 
-              
               <div class="swiper-pagination"></div>
             </div>
 
-            <!-- Live interactive dashboard embed (includes map as a tab) -->
+            <!-- Live dashboard -->
             <div class="mt-4" data-aos="fade-up" data-aos-delay="150">
               <h3 class="mb-3">Interactive dashboard</h3>
-              <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
-                <iframe
-                  src="https://cabluemgeek.github.io/ride-hailing-fee-prediction/ride_hailing_dashboard.html"
-                  width="100%"
-                  height="600"
-                  style="border: none; display: block;"
-                  title="Ride-hailing trips interactive dashboard">
-                </iframe>
+              
+
+                <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+                  <iframe
+                    class="app-embed"
+                    src="https://market-risk-dashboard-n8vprrt2slb6txigrscwfj.streamlit.app/"
+                    title="Institutional Market Risk Dashboard">
+                  </iframe>
+                </div>
+              
+              <div class="pd-note">
+                This dashboard currently runs locally via Streamlit (<code>streamlit run app/app.py</code>) —
+                once it's deployed, the live app will be embedded here, the same way as on the other
+                project pages.
               </div>
-              <p class="mt-2">
-                <a href="https://cabluemgeek.github.io/ride-hailing-fee-prediction/ride_hailing_dashboard.html" target="_blank" rel="noopener">
-                  Open dashboard in full screen <i class="bi bi-box-arrow-up-right"></i>
-                </a>
-              </p>
             </div>
           </div>
 
@@ -263,119 +265,121 @@
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3>Project information</h3>
               <ul>
-                <li><strong>Category</strong>: Data Science / Machine Learning</li>
-                <li><strong>Stack</strong>: Python, Pandas, Plotly, LightGBM, CatBoost, Scikit-learn, Folium</li>
-                <li><strong>Project date</strong>: July 2026</li>
-                <li><strong>Live dashboard</strong> <ul>
-                  <li>(charts + map): <a href="https://cabluemgeek.github.io/ride-hailing-fee-prediction/ride_hailing_dashboard.html" target="_blank" rel="noopener">View live</a></li>
-                  <li>(Power BI report): <a href="https://app.powerbi.com/view?r=eyJrIjoiNTI3MWYyZTktYzI4Ni00OGZmLWExODktZjI5ZWYxYzMxNTk3IiwidCI6ImI4YzE5NTEyLTJhZWQtNDcxZC1hOGQxLTliMDZlN2RhNzg2YSIsImMiOjl9" target="_blank" rel="noopener">View live</a></li>
-                </ul>
-                </li>
-                  <li><strong>Source code</strong>: <a href="https://github.com/cabluemgeek/ride-hailing-fee-prediction" target="_blank" rel="noopener">GitHub repo</a></li>
+                <li><strong>Category</strong>: Data Science / Quantitative Finance</li>
+                <li><strong>Portfolio</strong>: ~30 assets (equity, bonds, gold, real estate, crypto), equal-weighted, priced since 2018</li>
+                <li><strong>Stack</strong>: Python, pandas, NumPy, yfinance, SciPy, scikit-learn, Plotly, Streamlit</li>
+                <li><strong>Link to github</strong>: <a href="https://github.com/cabluemgeek/Market-Risk-Dashboard" target="_blank">GitHub repo →</a></li>
+                <li><strong>Live app</strong>: <a href="https://market-risk-dashboard-n8vprrt2slb6txigrscwfj.streamlit.app/" target="_blank">Live app →</a></li>
               </ul>
             </div>
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Ride-hailing fee prediction &amp; trip analytics</h2>
+              <h2>Measuring portfolio risk the way a risk desk would</h2>
               <p>
-                An end-to-end analysis of an Algerian ride-hailing dataset, covering exploratory data analysis,
-                rider and driver behavior patterns, and a fee prediction model. The project includes trip status
-                breakdowns (finished vs not finished), seasonal and hourly demand patterns, geographic distribution
-                of pickups across the top Algerian cities, and an interactive Folium map of driver-rider flows.
-              </p>
-              <p>
-                The final gradient-boosted model (LightGBM / CatBoost) predicts trip fees using distance, time,
-                and city-level features. All exploratory charts are also available as a standalone interactive
-                dashboard (embedded above), built with Chart.js and deployed via GitHub Pages.
+                This project takes a diversified basket of ~30 assets — big tech stocks, European
+                equities, bonds, gold, real estate, and crypto — and builds the full toolkit a market
+                risk desk uses to understand how that portfolio behaves: historical volatility,
+                Value at Risk and Expected Shortfall, correlation structure, scenario stress tests,
+                and forward-looking Monte Carlo simulation. The goal was to make each of these
+                genuinely institutional-grade risk concepts explorable and understandable through a
+                single interactive dashboard, rather than a one-off notebook calculation.
               </p>
             </div>
           </div>
 
         </div>
 
-          <!-- Project Deep Dive -->
-          <div class="project-deepdive" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="pd-heading">Project deep dive</h3>
-            <div class="row gy-4">
+        <!-- Project Deep Dive -->
+        <div class="project-deepdive" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="pd-heading">Project deep dive</h3>
+          <div class="row gy-4">
 
-              <div class="col-lg-6">
-                <div class="pd-card">
-                  <h4><i class="bi bi-bullseye"></i>Problem statement</h4>
-                  <p>
-                    Given trip-level data — pickup/destination city, distances, timestamps,
-                    rider/driver info, discounts, and cancellations — predict <code>trip_fee</code>
-                    for unseen trips on an Algerian ride-hailing platform. Since the target is only
-                    evaluated on completed trips, a large share of the work is understanding
-                    <em>why</em> trips fail (cancellations, unaccepted requests) before ever touching
-                    the regression problem itself.
-                  </p>
-                </div>
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-bullseye"></i>Problem statement</h4>
+                <p>
+                  Take a basket of investments, treat it as a real equal-weighted portfolio, and
+                  answer the questions a risk manager actually needs answered: how risky is this
+                  combination historically, how would it have survived past crashes, how correlated
+                  are its holdings really, and — looking forward — what's the plausible range of
+                  outcomes over the next N days? The dashboard was built so each of these questions
+                  gets its own page, explained in a way that doesn't require a finance background to
+                  read.
+                </p>
               </div>
-
-              <div class="col-lg-6">
-                <div class="pd-card">
-                  <h4><i class="bi bi-database"></i>Dataset</h4>
-                  <p>Trip records from a ride-hailing service operating across 47 Algerian cities:</p>
-                  <ul>
-                    <li>Timestamps: request, accepted, started, finished</li>
-                    <li>Trip info: pickup/destination city, trip distance, driver-to-rider distance, status</li>
-                    <li>People: rider, driver, rider/driver ratings</li>
-                    <li>Money: discounts, <code>trip_fee</code> (target)</li>
-                  </ul>
-                  <p style="font-size:14px;">Missing values concentrate in trips never accepted, started, or completed — treated as <strong>structurally missing</strong>, not data errors.</p>
-                </div>
-              </div>
-
-              <div class="col-lg-12">
-                <div class="pd-card">
-                  <h4><i class="bi bi-diagram-3"></i>Methodology</h4>
-                  <ol>
-                    <li><strong>Descriptive statistics</strong> — finished vs. unfinished trip rates by month, time of day, and city, to see where and when demand is lost.</li>
-                    <li><strong>Exploratory analysis</strong> — K-Means customer segmentation on frequency, completion rate, cancellation rate, distance, and spend (4 rider profiles); driver-level KPIs; an interactive Folium map of demand, cancellation, and revenue flows between pickup/destination cities.</li>
-                    <li><strong>Feature engineering</strong> — time features from the request timestamp, a same-city flag, trip duration with a missingness flag (some "FINISHED" trips had implausible sub-1-minute durations), discount imputation, and weather enrichment via the Open-Meteo archive API, batched on unique city/date pairs.</li>
-                    <li><strong>Modeling</strong> — five regressors trained and compared on log-transformed fee: Random Forest, an ensemble average of XGBoost/LightGBM/CatBoost, LightGBM, CatBoost, XGBoost, plus a small feedforward neural network (Keras/TensorFlow) as a deep-learning baseline.</li>
-                  </ol>
-                </div>
-              </div>
-
-              <div class="col-lg-8">
-                <div class="pd-card">
-                  <h4><i class="bi bi-graph-up-arrow"></i>Key findings</h4>
-                  <table class="pd-table mb-3">
-                    <thead><tr><th>Model</th><th>MAE</th><th>RMSE</th><th>R²</th></tr></thead>
-                    <tbody>
-                      <tr><td><strong>Random Forest</strong></td><td><strong>52.32</strong></td><td>387.82</td><td><strong>0.9496</strong></td></tr>
-                      <tr><td>Ensemble (XGB/LGBM/CatBoost avg)</td><td>53.85</td><td>435.19</td><td>0.9365</td></tr>
-                      <tr><td>LightGBM</td><td>54.23</td><td>438.61</td><td>0.9355</td></tr>
-                      <tr><td>CatBoost</td><td>54.91</td><td>419.35</td><td>0.9411</td></tr>
-                      <tr><td>XGBoost</td><td>55.23</td><td>482.56</td><td>0.9219</td></tr>
-                      <tr><td>Deep Learning (MLP)</td><td>106.74</td><td>1044.52</td><td>0.6342</td></tr>
-                    </tbody>
-                  </table>
-                  <p>Random Forest was selected for the final model on lowest MAE. The MLP baseline underperforming by a wide margin is itself a useful result: on this tabular, mixed-type feature set, tree ensembles capture the signal far more efficiently than a plain neural net.</p>
-                </div>
-              </div>
-
-              <div class="col-lg-4">
-                <div class="pd-card">
-                  <h4><i class="bi bi-tools"></i>Tech stack</h4>
-                  <div class="stack-badges">
-                    <span class="stack-badge">Python</span>
-                    <span class="stack-badge">pandas</span>
-                    <span class="stack-badge">scikit-learn</span>
-                    <span class="stack-badge">XGBoost</span>
-                    <span class="stack-badge">LightGBM</span>
-                    <span class="stack-badge">CatBoost</span>
-                    <span class="stack-badge">TensorFlow/Keras</span>
-                    <span class="stack-badge">Folium</span>
-                    <span class="stack-badge">Plotly</span>
-                    <span class="stack-badge">geopy</span>
-                  </div>
-                  <p class="pd-note">Key insight: the highest-spending, highest-frequency rider segment also has the worst completion rate — a retention risk sitting on top of the platform's best revenue. See the <a href="https://github.com/cabluemgeek/ride-hailing-fee-prediction" target="_blank">GitHub repo →</a></p>
-                </div>
-              </div>
-
             </div>
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-database"></i>Dataset</h4>
+                <p>Daily price history since 2018, pulled via <code>yfinance</code> and cached to <code>data/prices.csv</code>.</p>
+                <ul>
+                  <li><strong>~30 assets</strong> across equities (US big tech + European names), bonds, gold, real estate, and crypto</li>
+                  <li><strong>Weighting</strong>: equal-weighted — each asset holds roughly 1/30th of the portfolio</li>
+                  <li><strong>Risk-free rate</strong> used as the baseline for risk-adjusted return metrics (Sharpe, Sortino)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="pd-card">
+                <h4><i class="bi bi-diagram-3"></i>Methodology</h4>
+                <ol>
+                  <li><strong>Portfolio construction</strong> — daily returns computed per asset, then combined into a single equal-weighted portfolio return series.</li>
+                  <li><strong>Performance</strong> — cumulative return of the portfolio over time, plus an efficient-frontier simulation that tests thousands of alternative weightings to show the best possible risk/return trade-offs against the equal-weighted baseline.</li>
+                  <li><strong>Risk metrics</strong> — annualized return, volatility, Sharpe ratio, Sortino ratio, and maximum drawdown computed from the historical return series.</li>
+                  <li><strong>Correlation analysis</strong> — a full pairwise correlation heatmap across all ~30 assets, to check whether the portfolio is genuinely diversified or effectively concentrated.</li>
+                  <li><strong>VaR / Expected Shortfall</strong> — Value at Risk and Expected Shortfall (CVaR) computed at selectable confidence levels (95%/99%), with the full daily-return distribution visualized as a histogram.</li>
+                  <li><strong>Stress testing</strong> — historical scenario replay (e.g. COVID Crash, using the portfolio's real returns during that window) alongside hypothetical shocks (Interest Rate Shock, Inflation Shock, Equity Crash, Crypto Collapse) applied to specific asset classes.</li>
+                  <li><strong>Monte Carlo simulation</strong> — thousands of randomly generated alternative future paths, built from the portfolio's historical average return and volatility, summarized into mean/median, 5th/95th percentile, and best/worst-case outcomes over a chosen time horizon.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="pd-card">
+                <h4><i class="bi bi-graph-up-arrow"></i>Key findings</h4>
+                <table class="pd-table mb-3">
+                  <thead><tr><th>Metric</th><th>What it captures</th></tr></thead>
+                  <tbody>
+                    <tr><td>Sharpe / Sortino ratio</td><td>Return earned per unit of risk taken — Sortino only penalizes downside swings</td></tr>
+                    <tr><td>Max Drawdown</td><td>Worst peak-to-bottom loss the portfolio has ever experienced</td></tr>
+                    <tr><td>VaR 95% / 99%</td><td>Expected loss ceiling on a "normal" bad day, at each confidence level</td></tr>
+                    <tr><td>Expected Shortfall</td><td>Average loss specifically on the worst days beyond the VaR threshold</td></tr>
+                  </tbody>
+                </table>
+                <ul class="key-findings">
+                  <li>Expected Shortfall is consistently larger than VaR by construction — it's the metric risk managers weight more heavily, since it doesn't ignore the tail.</li>
+                  <li>The correlation heatmap is the clearest diversification check available: a portfolio where every asset is dark red against every other effectively behaves like one asset, no matter how many tickers it technically holds.</li>
+                  <li>Stress testing and Monte Carlo intentionally answer different questions than VaR — VaR describes "normal" risk, while these describe what happens when the normal statistical pattern breaks down.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="pd-card">
+                <h4><i class="bi bi-tools"></i>Tech stack</h4>
+                <div class="stack-badges">
+                  <span class="stack-badge">Python</span>
+                  <span class="stack-badge">pandas</span>
+                  <span class="stack-badge">NumPy</span>
+                  <span class="stack-badge">yfinance</span>
+                  <span class="stack-badge">SciPy</span>
+                  <span class="stack-badge">scikit-learn</span>
+                  <span class="stack-badge">Plotly</span>
+                  <span class="stack-badge">Matplotlib / Seaborn</span>
+                  <span class="stack-badge">Streamlit</span>
+                </div>
+                <p class="pd-note">
+                  Limitations worth flagging: the portfolio is equal-weighted for simplicity rather
+                  than optimized to a goal; all risk numbers are historical and assume the future
+                  statistically resembles the past; and the hypothetical stress scenarios use
+                  simplified assumed shocks rather than a full macroeconomic model.
+                </p>
+              </div>
+            </div>
+
           </div>
+        </div>
 
       </div>
 
@@ -394,7 +398,8 @@
         <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="credits">
-        Designed by <a>Kamelia ZENATI</a>
+       
+        Designed by <a>Kamelia ZENATI</a> 
       </div>
     </div>
 

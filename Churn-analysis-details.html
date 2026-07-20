@@ -55,6 +55,105 @@
     .key-findings li {
       margin-bottom: 10px;
     }
+
+    /* ---- Project Deep Dive (uniform block, all portfolio detail pages) ---- */
+    .project-deepdive {
+      padding: 50px 0 10px;
+    }
+    .project-deepdive .pd-heading {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    .project-deepdive .pd-heading::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+    .pd-card {
+      background: var(--surface-color);
+      border-radius: 10px;
+      padding: 25px 28px;
+      height: 100%;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid var(--accent-color);
+    }
+    .pd-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pd-card h4 i {
+      color: var(--accent-color);
+      font-size: 20px;
+    }
+    .pd-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .pd-card p:last-child {
+      margin-bottom: 0;
+    }
+    .pd-card ul,
+    .pd-card ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+    .pd-card ul li,
+    .pd-card ol li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .stack-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .stack-badge {
+      background: color-mix(in srgb, var(--accent-color), transparent 88%);
+      color: var(--accent-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+    }
+    .pd-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .pd-table th,
+    .pd-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      text-align: left;
+    }
+    .pd-table th {
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+    .pd-note {
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      border-left: 3px solid var(--accent-color);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 15px;
+    }
   </style>
 
 </head>
@@ -155,26 +254,7 @@
                 </a>
               </p>
             </div>
-              <!-- Live Predictor -->
-        <div class="row gy-4 mt-4" data-aos="fade-up" data-aos-delay="150">
-          <div class="col-lg-12">
-            <h3>Try the live predictor</h3>
-            <p>
-              Enter a customer's profile and get a real-time churn risk score from the trained
-              XGBoost model — the same model evaluated above, deployed live.
-            </p>
-            <iframe
-              class="app-embed"
-              src="https://customers-churn-analysis-5ffpxtupaphbftbmmpnu2y.streamlit.app/#bank-customer-churn-risk-predictor"
-              title="Live churn risk predictor">
-            </iframe>
-            <p class="app-fallback-link">
-              <a href="https://customers-churn-analysis-5ffpxtupaphbftbmmpnu2y.streamlit.app/#bank-customer-churn-risk-predictor" target="_blank">
-                Having trouble viewing it here? Open the predictor in a new tab →
-              </a>
-            </p>
-          </div>
-        </div>
+             
 
               <div class="swiper-pagination"></div>
             </div>
@@ -207,8 +287,90 @@
 
         </div>
 
-       
-        
+        <!-- Project Deep Dive -->
+        <div class="project-deepdive" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="pd-heading">Project deep dive</h3>
+          <div class="row gy-4">
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-bullseye"></i>Problem statement</h4>
+                <p>
+                  Customer acquisition costs far more than retention, but most churn models stop at
+                  "will this customer leave?" — which tells a bank <em>who</em> to worry about but not
+                  <em>when</em> to act or <em>how much</em> is actually at stake. This project was built
+                  to answer all three: who is likely to churn (classification), why — which factors
+                  actually drive the decision (SHAP + Cox hazard ratios), and when in the customer
+                  relationship the risk peaks (survival analysis), then translates that into a
+                  revenue-at-risk ranking a retention team can act on directly.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-database"></i>Dataset</h4>
+                <p>Kaggle "Bank Customer Churn" dataset — 10,000 customers, 2,037 observed churn events (~20% churn rate).</p>
+                <ul>
+                  <li><strong>Features:</strong> CreditScore, Geography, Gender, Age, Tenure, Balance, NumOfProducts, HasCrCard, IsActiveMember, EstimatedSalary</li>
+                  <li><strong>Target:</strong> <code>Exited</code> (1 = churned, 0 = retained)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="pd-card">
+                <h4><i class="bi bi-diagram-3"></i>Methodology</h4>
+                <ol>
+                  <li><strong>Exploratory analysis</strong> — churn rate broken down by geography, activity status, product count, and age. Germany shows a notably higher churn rate than France/Spain; inactive members and customers holding 3–4 products churn far more than average.</li>
+                  <li><strong>Feature engineering</strong> — one-hot encoding for Geography, binary encoding for Gender, plus two engineered signals: <code>BalanceSalaryRatio</code> (disengagement signal) and <code>EngagementScore</code> (activity + card ownership combined).</li>
+                  <li><strong>Classification</strong> — Logistic Regression, Random Forest, and XGBoost compared using AUC, precision/recall, and a confusion matrix rather than plain accuracy, since the target is imbalanced.</li>
+                  <li><strong>Explainability</strong> — SHAP values on the XGBoost model to rank the true drivers of individual predictions, not just global feature importance.</li>
+                  <li><strong>Survival analysis</strong> — Kaplan-Meier curves (overall and stratified by product count) plus a Cox Proportional Hazards model, using Tenure as duration and Exited as the event flag, to model <em>when</em> risk peaks rather than just whether it occurs.</li>
+                  <li><strong>Business layer</strong> — churn probability weighted by each customer's balance to estimate revenue at risk, ranked into a prioritized retention list for the top 10% highest-risk customers.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="pd-card">
+                <h4><i class="bi bi-graph-up-arrow"></i>Key findings</h4>
+                <table class="pd-table mb-3">
+                  <thead>
+                    <tr><th>Model</th><th>AUC</th><th>Recall (churn class)</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Logistic Regression</td><td>baseline</td><td>—</td></tr>
+                    <tr><td>Random Forest</td><td>—</td><td>—</td></tr>
+                    <tr><td><strong>XGBoost</strong></td><td><strong>0.868</strong></td><td><strong>0.744</strong></td></tr>
+                  </tbody>
+                </table>
+                <ul>
+                  <li>Cox model (n=10,000, 2,037 events, concordance = 0.70): active members face a <strong>54% lower churn hazard</strong> (HR 0.46); each additional year of age raises hazard by ~5%.</li>
+                  <li>The linear <code>NumOfProducts</code> term looked statistically insignificant on its own — but SHAP and Kaplan-Meier stratification both revealed a sharp, non-linear risk spike at 3–4 products. Binning it into a categorical flag recovered a significant effect, a methodological finding worth flagging in its own right.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="pd-card">
+                <h4><i class="bi bi-tools"></i>Tech stack</h4>
+                <div class="stack-badges">
+                  <span class="stack-badge">Python</span>
+                  <span class="stack-badge">pandas</span>
+                  <span class="stack-badge">scikit-learn</span>
+                  <span class="stack-badge">XGBoost</span>
+                  <span class="stack-badge">SHAP</span>
+                  <span class="stack-badge">lifelines</span>
+                  <span class="stack-badge">Plotly</span>
+                  <span class="stack-badge">Streamlit</span>
+                </div>
+                <p class="pd-note">Full notebook, priority retention list, and dashboard chart exports are in the <a href="https://github.com/cabluemgeek/Customers-Churn-Analysis" target="_blank">GitHub repo →</a></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div>
 

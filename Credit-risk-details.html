@@ -55,6 +55,105 @@
     .key-findings li {
       margin-bottom: 10px;
     }
+
+    /* ---- Project Deep Dive (uniform block, all portfolio detail pages) ---- */
+    .project-deepdive {
+      padding: 50px 0 10px;
+    }
+    .project-deepdive .pd-heading {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    .project-deepdive .pd-heading::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+    .pd-card {
+      background: var(--surface-color);
+      border-radius: 10px;
+      padding: 25px 28px;
+      height: 100%;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid var(--accent-color);
+    }
+    .pd-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pd-card h4 i {
+      color: var(--accent-color);
+      font-size: 20px;
+    }
+    .pd-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .pd-card p:last-child {
+      margin-bottom: 0;
+    }
+    .pd-card ul,
+    .pd-card ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+    .pd-card ul li,
+    .pd-card ol li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .stack-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .stack-badge {
+      background: color-mix(in srgb, var(--accent-color), transparent 88%);
+      color: var(--accent-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+    }
+    .pd-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .pd-table th,
+    .pd-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      text-align: left;
+    }
+    .pd-table th {
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+    .pd-note {
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      border-left: 3px solid var(--accent-color);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 15px;
+    }
   </style>
 
 </head>
@@ -155,26 +254,7 @@
                 </a>
               </p>
             </div>
-              <!-- Live Predictor -->
-        <div class="row gy-4 mt-4" data-aos="fade-up" data-aos-delay="150">
-          <div class="col-lg-12">
-            <h3>Try the live predictor</h3>
-            <p>
-              Enter a customer's profile and get a real-time credit risk score from the trained
-              XGBoost model — the same model evaluated above, deployed live.
-            </p>
-            <iframe
-              class="app-embed"
-              src="https://credit-risk-scoring-cpfthnr9nzx94dzgbyxn29.streamlit.app/"
-              title="Live credit risk predictor">
-            </iframe>
-            <p class="app-fallback-link">
-              <a href="https://credit-risk-scoring-cpfthnr9nzx94dzgbyxn29.streamlit.app/" target="_blank">
-                Having trouble viewing it here? Open the predictor in a new tab →
-              </a>
-            </p>
-          </div>
-        </div>
+         
 
               <div class="swiper-pagination"></div>
             </div>
@@ -207,8 +287,88 @@
 
         </div>
 
-       
-        
+        <!-- Project Deep Dive -->
+        <div class="project-deepdive" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="pd-heading">Project deep dive</h3>
+          <div class="row gy-4">
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-bullseye"></i>Problem statement</h4>
+                <p>
+                  Build an end-to-end probability-of-default (PD) pipeline from raw, multi-table
+                  lending data: engineer features across seven linked tables, rank them with
+                  Weight-of-Evidence / Information Value, train a staircase of models from an
+                  interpretable scorecard up to gradient boosting, and translate the output into a
+                  points-based credit scorecard a risk team can actually use — plus a deployed app for
+                  live scoring.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-database"></i>Dataset</h4>
+                <p><a href="https://www.kaggle.com/competitions/home-credit-default-risk" target="_blank">Home Credit Default Risk</a> (Kaggle) — ~300,000 customers across linked tables:</p>
+                <ul>
+                  <li><code>application_train/test</code>, <code>bureau</code>, <code>bureau_balance</code></li>
+                  <li><code>previous_application</code>, <code>POS_CASH_balance</code>, <code>credit_card_balance</code></li>
+                  <li><code>installments_payments</code> — ~723 MB, loaded in chunks rather than a single <code>pd.read_csv()</code> call</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="pd-card">
+                <h4><i class="bi bi-diagram-3"></i>Methodology</h4>
+                <ol>
+                  <li><strong>Data prep</strong> — loading, profiling, and anomaly cleaning across all seven raw tables; the large installments table is read in chunks with per-chunk dtype downcasting.</li>
+                  <li><strong>Feature engineering</strong> — multi-table aggregation and ratio features (e.g. credit-to-income, annuity-to-credit) rolled up from bureau and previous-application history to the applicant level.</li>
+                  <li><strong>WOE / IV ranking</strong> — Weight-of-Evidence binning and Information Value scoring to rank predictive strength and prepare features for a linear scorecard.</li>
+                  <li><strong>Model comparison</strong> — Logistic Regression (scorecard baseline), Random Forest, XGBoost, and LightGBM trained and tuned on the engineered features.</li>
+                  <li><strong>Scorecard construction</strong> — logistic coefficients rescaled into a points-based scorecard, with Population Stability Index (PSI) tracked for drift.</li>
+                  <li><strong>Explainability</strong> — SHAP global and local explanations layered on top of the winning model.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="pd-card">
+                <h4><i class="bi bi-graph-up-arrow"></i>What the pipeline measures</h4>
+                <table class="pd-table">
+                  <thead><tr><th>Metric</th><th>Why it's tracked</th></tr></thead>
+                  <tbody>
+                    <tr><td>AUC-ROC</td><td>Overall ranking ability</td></tr>
+                    <tr><td>KS statistic</td><td>Max separation good/bad — standard retail credit metric</td></tr>
+                    <tr><td>Gini</td><td>2×AUC−1 — industry-standard alternative to AUC</td></tr>
+                    <tr><td>PR-AUC</td><td>More informative than ROC-AUC under class imbalance</td></tr>
+                    <tr><td>Calibration</td><td>The PD feeds an Expected Loss calculation, so calibration matters as much as ranking</td></tr>
+                    <tr><td>PSI</td><td>Population/model stability check over time</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="pd-card">
+                <h4><i class="bi bi-tools"></i>Tech stack</h4>
+                <div class="stack-badges">
+                  <span class="stack-badge">Python</span>
+                  <span class="stack-badge">LightGBM</span>
+                  <span class="stack-badge">XGBoost</span>
+                  <span class="stack-badge">SHAP</span>
+                  <span class="stack-badge">optbinning</span>
+                  <span class="stack-badge">joblib</span>
+                  <span class="stack-badge">lifelines</span>
+                  <span class="stack-badge">Plotly</span>
+                  <span class="stack-badge">Streamlit</span>
+                </div>
+                <p class="pd-note">The repo is organized as a runnable <code>main_pipeline.py</code> with distinct phases (features → WOE → train → scorecard) — see the <a href="https://github.com/cabluemgeek/Credit-Risk-Scoring" target="_blank">GitHub repo →</a> for phase-by-phase run instructions and the 723 MB installments-file handling.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div>
 

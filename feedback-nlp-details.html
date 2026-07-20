@@ -55,6 +55,105 @@
     .key-findings li {
       margin-bottom: 10px;
     }
+
+    /* ---- Project Deep Dive (uniform block, all portfolio detail pages) ---- */
+    .project-deepdive {
+      padding: 50px 0 10px;
+    }
+    .project-deepdive .pd-heading {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    .project-deepdive .pd-heading::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+    .pd-card {
+      background: var(--surface-color);
+      border-radius: 10px;
+      padding: 25px 28px;
+      height: 100%;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid var(--accent-color);
+    }
+    .pd-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pd-card h4 i {
+      color: var(--accent-color);
+      font-size: 20px;
+    }
+    .pd-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .pd-card p:last-child {
+      margin-bottom: 0;
+    }
+    .pd-card ul,
+    .pd-card ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+    .pd-card ul li,
+    .pd-card ol li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .stack-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .stack-badge {
+      background: color-mix(in srgb, var(--accent-color), transparent 88%);
+      color: var(--accent-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+    }
+    .pd-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .pd-table th,
+    .pd-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      text-align: left;
+    }
+    .pd-table th {
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+    .pd-note {
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      border-left: 3px solid var(--accent-color);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 15px;
+    }
   </style>
 
 </head>
@@ -155,26 +254,7 @@
                 </a>
               </p>
             </div>
-              <!-- Live App -->
-        <div class="row gy-4 mt-4" data-aos="fade-up" data-aos-delay="150">
-          <div class="col-lg-12">
-            <h3>Try the live classifier</h3>
-            <p>
-              Write a review in French, English, or darija and get real-time sentiment and
-              aspect classification — the same models evaluated above, deployed live.
-            </p>
-            <iframe
-              class="app-embed"
-              src="https://ai-powered-sentiment-analysis-of-customer-feedback-baouusrlueu.streamlit.app/"
-              title="Live sentiment classifier">
-            </iframe>
-            <p class="app-fallback-link">
-              <a href="https://ai-powered-sentiment-analysis-of-customer-feedback-baouusrlueu.streamlit.app/" target="_blank">
-                Having trouble viewing it here? Open the classifier in a new tab →
-              </a>
-            </p>
-          </div>
-        </div>
+        
 
               <div class="swiper-pagination"></div>
             </div>
@@ -205,6 +285,86 @@
             </div>
           </div>
 
+        </div>
+
+        <!-- Project Deep Dive -->
+        <div class="project-deepdive" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="pd-heading">Project deep dive</h3>
+          <div class="row gy-4">
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-bullseye"></i>Problem statement</h4>
+                <p>
+                  Classify Yassir app customer feedback into sentiment categories while identifying
+                  the underlying topic of complaint or praise — using text written in French,
+                  English, and Algerian Arabic (darija), often mixed within the same dataset, without
+                  a translation step. The deployed solution also had to fit free-tier hosting memory
+                  limits while keeping the best accuracy available for each language.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-database"></i>Dataset</h4>
+                <ul>
+                  <li><code>data_reviews.csv</code> — 723 positive / 413 negative labeled reviews (Sentiment, Rating, Language, Aspect_Focus)</li>
+                  <li><code>restaurant_reviews_v2.csv</code> — unlabeled reviews tied to anonymized restaurant IDs, used for the leaderboard</li>
+                  <li>Language split: <strong>34.5% French, 33.2% English, 32.3% Arabic</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="pd-card">
+                <h4><i class="bi bi-diagram-3"></i>Methodology</h4>
+                <ol>
+                  <li><strong>Data pipeline</strong> — cleaning, language detection, duplicate/consistency checks, feature engineering (review length, punctuation counts, token length vs. model max-length), and bilingual/RTL-aware word clouds.</li>
+                  <li><strong>Model comparison</strong> — five approaches trained and evaluated on the labeled set: TF-IDF + Logistic Regression and two multilingual transformers (mBERT, XLM-RoBERTa) on the full dataset, plus two Arabic-specialized transformers (DziriBERT, MARBERT) on the Arabic-script subset.</li>
+                  <li><strong>Aspect detection</strong> — keyword-based, with dictionaries in French, English, and Arabic (including Algerian dialect terms) mapping to six categories: delivery, food, service, quality, app, pricing.</li>
+                  <li><strong>Deployed architecture</strong> — French/English reviews are routed to TF-IDF + Logistic Regression (best score, ships in the repo, loads instantly); Arabic-script/darija reviews are routed to DziriBERT, hosted on Hugging Face Hub and loaded at runtime.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="pd-card">
+                <h4><i class="bi bi-graph-up-arrow"></i>Key findings</h4>
+                <table class="pd-table mb-3">
+                  <thead><tr><th>Model</th><th>Scope</th><th>F1 (macro)</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>TF-IDF + LogReg</strong></td><td>Full dataset</td><td><strong>0.981</strong></td></tr>
+                    <tr><td>mBERT</td><td>Full dataset</td><td>0.971</td></tr>
+                    <tr><td>XLM-RoBERTa</td><td>Full dataset</td><td>0.962</td></tr>
+                    <tr><td>DziriBERT</td><td>Arabic subset</td><td>1.000*</td></tr>
+                    <tr><td>MARBERT</td><td>Arabic subset</td><td>1.000*</td></tr>
+                  </tbody>
+                </table>
+                <p style="font-size:13px; color:#777;">*Arabic-subset validation split is small (~74 rows), so these scores are less statistically robust than the full-dataset results.</p>
+                <p>The classical TF-IDF + Logistic Regression baseline beat every transformer on French/English text — while being far smaller and faster to load, which directly shaped the deployment architecture above.</p>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="pd-card">
+                <h4><i class="bi bi-tools"></i>Tech stack</h4>
+                <div class="stack-badges">
+                  <span class="stack-badge">Python</span>
+                  <span class="stack-badge">Transformers</span>
+                  <span class="stack-badge">mBERT</span>
+                  <span class="stack-badge">DziriBERT</span>
+                  <span class="stack-badge">XLM-RoBERTa</span>
+                  <span class="stack-badge">MARBERT</span>
+                  <span class="stack-badge">scikit-learn</span>
+                  <span class="stack-badge">Streamlit</span>
+                  <span class="stack-badge">Hugging Face Hub</span>
+                </div>
+                <p class="pd-note">Limitations worth flagging: aspect detection is keyword-based rather than learned, and there's no "neutral" class in the labeled data despite an early project brief mentioning three sentiment categories. Details in the <a href="https://github.com/cabluemgeek/AI-Powered-Sentiment-Analysis-of-Customer-Feedback" target="_blank">GitHub repo →</a></p>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>

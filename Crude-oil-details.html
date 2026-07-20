@@ -27,6 +27,131 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <style>
+    /* small additions for this page only — chart embeds and the live app frame */
+    .chart-embed {
+      width: 100%;
+      height: 480px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+    .app-embed {
+      width: 100%;
+      height: 900px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .app-fallback-link {
+      text-align: center;
+      margin-top: 12px;
+    }
+    .key-findings li {
+      margin-bottom: 10px;
+    }
+
+    /* ---- Project Deep Dive (uniform block, all portfolio detail pages) ---- */
+    .project-deepdive {
+      padding: 50px 0 10px;
+    }
+    .project-deepdive .pd-heading {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    .project-deepdive .pd-heading::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+    .pd-card {
+      background: var(--surface-color);
+      border-radius: 10px;
+      padding: 25px 28px;
+      height: 100%;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid var(--accent-color);
+    }
+    .pd-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pd-card h4 i {
+      color: var(--accent-color);
+      font-size: 20px;
+    }
+    .pd-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .pd-card p:last-child {
+      margin-bottom: 0;
+    }
+    .pd-card ul,
+    .pd-card ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+    .pd-card ul li,
+    .pd-card ol li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .stack-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .stack-badge {
+      background: color-mix(in srgb, var(--accent-color), transparent 88%);
+      color: var(--accent-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+    }
+    .pd-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .pd-table th,
+    .pd-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      text-align: left;
+    }
+    .pd-table th {
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+    .pd-note {
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      border-left: 3px solid var(--accent-color);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+  </style>
+
  <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
 
 </head>
@@ -168,6 +293,86 @@
           </div>
 
         </div>
+
+          <!-- Project Deep Dive -->
+          <div class="project-deepdive" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="pd-heading">Project deep dive</h3>
+            <div class="row gy-4">
+
+              <div class="col-lg-6">
+                <div class="pd-card">
+                  <h4><i class="bi bi-bullseye"></i>Problem statement</h4>
+                  <p>
+                    Crude oil underpins roughly 19% of Algeria's GDP, 93% of exports, and 75% of
+                    budget revenue, yet traditional econometric models struggle with the nonlinear,
+                    volatile nature of oil prices. The core question this project investigates:
+                    <em>how do different machine learning models and dataset characteristics
+                    influence the accuracy of crude oil price forecasts, and which approaches yield
+                    the most reliable predictions?</em> — with secondary questions on whether hybrid
+                    models beat individual ones, whether more data helps, and how much feature
+                    richness matters.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="pd-card">
+                  <h4><i class="bi bi-database"></i>Dataset</h4>
+                  <p>Saharan Blend crude oil price series, 2000–2022, at two granularities:</p>
+                  <ul>
+                    <li><strong>Daily</strong> — large sample, well suited to deep learning</li>
+                    <li><strong>Monthly</strong> — much smaller sample, a real stress test for data-hungry models</li>
+                    <li>Enriched with the geopolitical risk (GPR) index and the USD/DZD exchange rate</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="pd-card">
+                  <h4><i class="bi bi-diagram-3"></i>Methodology</h4>
+                  <ol>
+                    <li><strong>Data cleaning &amp; denoising</strong> — outlier handling on the raw price series before any modeling.</li>
+                    <li><strong>Exploratory analysis</strong> — examining how the GPR index and USD/DZD exchange rate relate to price movements over time.</li>
+                    <li><strong>Model training</strong> — seven models trained and evaluated on a proper train/validation/test split, across both daily and monthly granularity:
+                      <ul>
+                        <li>Individual: SVR, Random Forest, XGBoost, LSTM, CNN</li>
+                        <li>Hybrid: CNN‑LSTM, Random Forest‑XGBoost</li>
+                      </ul>
+                    </li>
+                    <li><strong>Comparison</strong> — models scored by RMSE and R² across time granularity and architecture, all explorable in the interactive dashboard above.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="col-lg-7">
+                <div class="pd-card">
+                  <h4><i class="bi bi-graph-up-arrow"></i>Key findings</h4>
+                  <ul class="key-findings">
+                    <li>The <strong>RF‑XGBoost hybrid</strong> came out on top on both daily and monthly data — hybrid models outperformed standalone models overall, confirming the project's central hypothesis.</li>
+                    <li>Deep learning models (LSTM, CNN, CNN‑LSTM) excelled on the large daily dataset but broke down on the much smaller monthly one — model choice needs to follow data volume as much as architecture.</li>
+                    <li>Larger datasets generally improved performance, especially for tree-based models; feature richness meaningfully affected how well the deep learning models generalized.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-lg-5">
+                <div class="pd-card">
+                  <h4><i class="bi bi-tools"></i>Tech stack</h4>
+                  <div class="stack-badges">
+                    <span class="stack-badge">Python</span>
+                    <span class="stack-badge">pandas</span>
+                    <span class="stack-badge">scikit-learn</span>
+                    <span class="stack-badge">XGBoost</span>
+                    <span class="stack-badge">TensorFlow / Keras</span>
+                    <span class="stack-badge">Plotly</span>
+                    <span class="stack-badge">Matplotlib / Seaborn</span>
+                  </div>
+                  <p class="pd-note">Data sourced from Kaggle, the U.S. EIA, World Bank, and IMF. Full notebooks (daily &amp; monthly) in the <a href="https://github.com/cabluemgeek/crude-oil-price-prediction" target="_blank">GitHub repo →</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
 
       </div>
 
