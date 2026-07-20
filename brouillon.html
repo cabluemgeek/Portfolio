@@ -1,0 +1,99 @@
+<!-- /READ ME GITHUB PROJET CRUDE OIL FORECAST -->
+<h2>Contexte</h2>
+              <p>
+                Le pétrole brut est une ressource stratégique pour l'Algérie : il représente 19% du PIB, 93% des exportations et 75% des revenus budgétaires. Cette dépendance rend l'économie très vulnérable à la volatilité du prix du pétrole, elle-même influencée par des facteurs complexes (tensions géopolitiques, dynamique offre/demande, taux de change) difficiles à capter avec des méthodes statistiques classiques.
+              </p>
+
+              <h2>Données et variables</h2>
+              <p>Deux jeux de données ont été construits pour la période 2000–2022, avec la variable cible commune : le prix du Saharan Blend.</p>
+               <ul> 
+                <li><strong>Dataset journalier</strong></li> 
+                <ul> 
+                    <li>Taux de change USD/DZD (Banque d'Algérie)</li>
+                    <li>Indice de risque géopolitique GPR (Matteo Iacoviello)</li>
+                    <li>Prix du pétrole (Statista)</li>
+                </ul>
+               <li><strong>Dataset mensuel</strong></li> 
+                <ul> 
+                    <li>Demande mondiale de pétrole (Rapports mensuels de l'OPEP)</li>
+                    <li>Offre hors-OPEP (Rapports mensuels de l'OPEP)</li>
+                    <li>Production OPEP (Rapports mensuels de l'OPEP)</li>
+                    <li>Taux de change USD/DZD</li>
+                    <li>Indice GPR</li>
+                    <li>Prix du pétrole</li>
+                </ul>
+              </ul>
+              <p>Traitement appliqué : gestion des valeurs manquantes (forward-fill sur le mensuel, backward-fill sur le journalier), détection et suppression d'outliers par z-score, débruitage par filtre gaussien sur les données journalières.</p>
+            
+            
+            <h2>Revue de littérature</h2>
+            <p>L'étude s'appuie sur des travaux existants montrant que :</p>
+            <ul> 
+                    <li>les modèles LSTM et les architectures hybrides CNN-LSTM surpassent les modèles statistiques classiques pour capter les dynamiques non linéaires du marché pétrolier</li>
+                    <li>les modèles à composantes qualitatives (ex. ANN-Q) améliorent la prévision en intégrant des facteurs géopolitiques et macroéconomiques</li>
+                    <li>les approches hybrides combinant plusieurs algorithmes réduisent systématiquement l'erreur de prédiction par rapport aux modèles individuels</li>
+                </ul>
+
+                <h2>Objectif de l'étude</h2>
+                <p>Évaluer la performance de plusieurs modèles de machine learning et deep learning pour la prévision du prix du pétrole, et déterminer quelles caractéristiques de dataset (taille d'échantillon, nombre de variables) favorisent quel type de modèle.</p>
+            
+            <h2>Méthodologie</h2>
+            <p>Sept modèles ont été entraînés et comparés sur les deux datasets (split 80/20, cross-validation 5-fold pour l'optimisation des hyperparamètres) :</p>
+             <ul> 
+                <li>SVR, Random Forest, XGBoost (modèles classiques)</li>
+                <li>LSTM, CNN (deep learning)</li>
+                <li>Hybride Random Forest-XGBoost, hybride CNN-LSTM (modèles combinés)</li>
+             </ul>
+        <p>Évaluation par RMSE et R².</p>
+
+        <h2>Résultats</h2>
+         <ul>
+           <li><strong>Dataset journalier</strong></li> (peu de variables, beaucoup d'observations) : LSTM, CNN et l'hybride CNN-LSTM dominent nettement, avec un R² proche de 1.00 et un RMSE autour de 1 à 2 USD. SVR affiche la performance la plus faible.
+           <li><strong>Dataset mensuel</strong></li> (plus de variables, moins d'observations) : Random Forest, XGBoost et leur hybride sont les plus performants (R² ≈ 0.97, RMSE ≈ 5 USD). L'hybride CNN-LSTM, à l'inverse, s'effondre sur ce dataset (R² négatif), signe d'un surapprentissage lié au trop grand nombre de variables pour trop peu d'observations.
+         </ul>
+         <h2>Conclusion</h2>
+         <p>Les modèles hybrides surpassent systématiquement les modèles individuels — combiner plusieurs algorithmes améliore la précision de prévision. Mais le choix du modèle dépend surtout des caractéristiques du dataset : les architectures de deep learning (LSTM, CNN) excellent sur de grands échantillons avec peu de variables, tandis que les modèles classiques (SVR, RF, XGBoost) sont plus robustes sur des données à plus haute dimension mais moins nombreuses. Une piste d'amélioration identifiée : intégrer des variables macroéconomiques et environnementales supplémentaires pour affiner encore la prévision.</p>
+
+
+<!-- /READ ME GITHUB PROJET SENTIMENT ANALYSIS YASSIR -->
+
+Contexte
+Projet réalisé lors du hackathon Yassir à l'African Startup Conference (décembre 2025, Algérie). L'objectif : construire un modèle de NLP capable de classifier automatiquement le sentiment des avis clients collectés sur l'application Yassir, pour aider l'entreprise à identifier les points de friction (livraison, qualité, app, pricing...) à partir du texte brut.
+Données et variables
+Quatre fichiers fournis :
+
+data_reviews.csv — dataset principal : avis multilingues (français, arabe, anglais), avec note (1-5), pays, sentiment étiqueté, et aspect concerné (Food Quality, Delivery Speed, App Usability, Pricing...)
+restaurant_reviews_v2.csv — dataset auxiliaire d'avis restaurants, utilisé pour tester la généralisation du modèle sur un domaine proche
+test_food.csv — jeu de test pour la soumission finale
+sample_submission.csv — format de soumission attendu
+
+Particularité forte du dataset : le mélange de langues (texte en français, arabe, anglais, parfois dans le même avis), avec du bruit typique de la donnée réelle (fautes, argot, translittération arabe-latin).
+Objectif de l'étude
+Classifier chaque avis client comme positif ou négatif à partir du texte, dans un contexte multilingue et bruité, tout en explorant les aspects du service les plus souvent évoqués.
+Méthodologie
+Prétraitement
+
+Nettoyage du texte (conservation des caractères latins et arabes, suppression des URLs, normalisation)
+Détection automatique de la langue (langdetect) et création de variables binaires (is_french, is_arabic, is_english)
+Mapping des mots-clés arabes vers leurs équivalents anglais pour détecter les aspects (livraison, nourriture, service, qualité, app, prix) même dans le texte arabe
+
+Feature engineering
+
+Longueur de l'avis (mots, caractères), longueur moyenne des mots
+Nombre de points d'exclamation, de points d'interrogation, de mots en majuscules (proxy d'intensité émotionnelle)
+Encodage one-hot des aspects détectés
+
+Modélisation
+
+Fine-tuning d'un modèle BERT multilingue (bert-base-multilingual-cased, via HuggingFace Transformers) — choisi spécifiquement pour gérer le mélange français/arabe/anglais sans avoir à séparer les langues
+Tokenisation avec troncature/padding à 128 tokens
+Entraînement : 3 epochs, learning rate 2e-5, batch size 32, précision mixte (fp16) pour accélérer l'entraînement sur GPU
+Évaluation par epoch avec sélection automatique du meilleur modèle
+
+Test de généralisation
+Le modèle entraîné sur les avis Yassir a été appliqué à un dataset externe d'avis restaurants pour vérifier sa capacité à généraliser au-delà du domaine d'origine.
+Résultats
+Modèle évalué sur le jeu de validation interne et testé sur le jeu de test final du hackathon.
+[F1-score obtenu / classement au hackathon — à compléter]
+Conclusion
+Ce projet démontre la faisabilité d'une classification de sentiment robuste sur des données clients réelles et multilingues, sans pipeline de traduction préalable — en s'appuyant directement sur un transformer multilingue pré-entraîné. L'approche par aspects (au-delà du sentiment global) permet en plus d'identifier pourquoi un client est mécontent, pas seulement qu'il l'est — un axe directement actionnable pour une équipe produit.
