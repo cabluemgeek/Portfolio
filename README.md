@@ -2,7 +2,7 @@
 <h3 align="center">Data Analyst | Data Scientist | Financial Asset Management Student</h3>
  
 <p align="center">
-  <a href="https://cabluemgeek.github.io/"><strong>🌐 View my portfolio »</strong></a>
+  <a href="[https://cabluemgeek.github.io/](https://cabluemgeek.github.io/Portfolio/)"><strong>🌐 View my portfolio »</strong></a>
 </p>
 <p align="center">
   <a href="mailto:zenatikamelia@gmail.com"><img src="https://img.shields.io/badge/-Email-D14836?style=flat&logo=gmail&logoColor=white" alt="Email"></a>
