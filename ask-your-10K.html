@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Ask Your 10-K - Project Details</title>
+  <meta name="description" content="Local, citation-grounded RAG assistant for SEC 10-K filings, built with LangChain, ChromaDB, and Ollama.">
+  <meta name="keywords" content="RAG, retrieval augmented generation, LangChain, ChromaDB, Ollama, LLM, SEC filings, finance, data science">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+ <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
+
+  <style>
+    .chart-embed {
+      width: 100%;
+      height: 480px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+    .app-embed {
+      width: 100%;
+      height: 900px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .app-fallback-link {
+      text-align: center;
+      margin-top: 12px;
+    }
+    .key-findings li {
+      margin-bottom: 10px;
+    }
+    .demo-media {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      display: block;
+    }
+    .local-note {
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      border-left: 3px solid var(--accent-color);
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+
+    /* ---- Project Deep Dive (uniform block, all portfolio detail pages) ---- */
+    .project-deepdive {
+      padding: 50px 0 10px;
+    }
+    .project-deepdive .pd-heading {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    .project-deepdive .pd-heading::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+    .pd-card {
+      background: var(--surface-color);
+      border-radius: 10px;
+      padding: 25px 28px;
+      height: 100%;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid var(--accent-color);
+    }
+    .pd-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pd-card h4 i {
+      color: var(--accent-color);
+      font-size: 20px;
+    }
+    .pd-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .pd-card p:last-child {
+      margin-bottom: 0;
+    }
+    .pd-card ul,
+    .pd-card ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+    .pd-card ul li,
+    .pd-card ol li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .stack-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .stack-badge {
+      background: color-mix(in srgb, var(--accent-color), transparent 88%);
+      color: var(--accent-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+    }
+    .pd-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .pd-table th,
+    .pd-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      text-align: left;
+    }
+    .pd-table th {
+      color: var(--heading-color);
+      font-weight: 600;
+    }
+    .pd-note {
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      border-left: 3px solid var(--accent-color);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+  </style>
+
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header d-flex align-items-center light-background sticky-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1 class="sitename">Kamelia ZENATI</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div class="header-social-links">
+        <a href="https://github.com/cabluemgeek" class="github"><i class="bi bi-github-x"></i></a>
+        <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+<!-- Bouton traducteur personnalisé -->
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" id="langBtn" type="button">
+    <i class="bi bi-globe2"></i>
+    <span id="currentLang">EN</span>
+    <i class="bi bi-chevron-down lang-chevron"></i>
+  </button>
+  <ul class="lang-dropdown" id="langDropdown">
+    <li data-lang="en"><span class="flag">🇬🇧</span> English</li>
+    <li data-lang="fr"><span class="flag">🇫🇷</span> Français</li>
+    <li data-lang="ar"><span class="flag">🇩🇿</span> العربية</li>
+    <li data-lang="es"><span class="flag">🇪🇸</span> Español</li>
+  </ul>
+</div>
+
+<!-- Google Translate reste présent mais totalement invisible -->
+<div id="google_translate_element" style="display:none;"></div>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Ask Your 10-K</h2>
+        <p>A local, citation-grounded RAG assistant for querying SEC filings in plain English</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper init-swiper">
+
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 5000
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+<!-- Demo recording: this project runs on a local Ollama LLM, so it can't be
+     deployed to a public URL the way a static Streamlit app can. A short
+     screen recording (GIF/MP4) of a real Q&A exchange stands in for the
+     live-app embed used on other project pages. -->
+            <div class="mt-4" data-aos="fade-up" data-aos-delay="150">
+              <h3 class="mb-3">Demo</h3>
+              <img src="assets/img/portfolio/ask-your-10k-demo.gif"
+                   alt="Ask Your 10-K demo: asking a question about Apple's 10-K and receiving a cited answer"
+                   class="demo-media">
+              <div class="local-note">
+                <strong>Instructions on how to use the Ask Your 10-K:</strong> First select the ticker (AAPL, MSFT, TSLA, etc.), the form type (10-K, 10-Q, 8-K) and the fiscal year of the 10-K you want to query. Before typing your question, make sure you have selected the correct parameters and Ingested/re-Ingested the filings. Then type your question in plain English. The assistant will return an answer with citations that link to the exact section of the filing where the information was found. If the answer isn't in the filings, it will let you know instead of guessing.
+              </div>
+            </div>
+
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Category</strong>: Data Science / GenAI / Finance</li>
+                <li><strong>Data source</strong>: SEC EDGAR (live 10-K filings, any ticker)</li>
+                <li><strong>Stack</strong>: LangChain, ChromaDB, Ollama (llama3.2), Hugging Face embeddings, Streamlit</li>
+                <li><strong>Link to github</strong>: <a href="https://github.com/cabluemgeek/ask-your-10-k" target="_blank">GitHub repo →</a></li>
+                <li><strong>Eval report</strong>: <a href="https://github.com/cabluemgeek/ask-your-10-k/blob/main/eval/results.md" target="_blank">View eval results →</a></li>
+              </ul>
+            </div>
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Answers you can actually verify</h2>
+              <p>
+                Generic chatbots will confidently answer financial questions with numbers they
+                made up. This project takes the opposite approach: every factual claim in an
+                answer is tied to a citation that maps to a real, retrieved excerpt from an
+                actual SEC filing — and if the answer isn't in the filings that were ingested,
+                the assistant says so instead of guessing. Built to demonstrate the full RAG
+                stack (embeddings, vector search, retrieval, prompt engineering, grounded
+                generation) applied where verifiability matters more than fluency.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Project Deep Dive -->
+        <div class="project-deepdive" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="pd-heading">Project deep dive</h3>
+          <div class="row gy-4">
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-bullseye"></i>Problem statement</h4>
+                <p>
+                  10-K filings are hundreds of pages of dense, structured disclosure — reading one
+                  end-to-end to answer a single question ("what were the main supply chain risks
+                  in FY2022?") is impractical, and asking a general-purpose chatbot risks a
+                  confident, fabricated answer. This project builds a retrieval pipeline that
+                  keeps every answer traceable to its source: the exact filing, fiscal year, and
+                  Item section it came from, with the underlying excerpt shown alongside the
+                  answer for the user to verify directly.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="pd-card">
+                <h4><i class="bi bi-database"></i>Data</h4>
+                <p>Live SEC EDGAR filings, downloaded on demand for any ticker — not a static dataset.</p>
+                <ul>
+                  <li><strong>Coverage:</strong> Apple (AAPL) 10-K filings, fiscal years 2015–2025 ingested (11 filings, ~7,200 chunks)</li>
+                  <li><strong>Sections parsed:</strong> Item 1. Business, Item 1A. Risk Factors, Item 7. MD&A, Item 8. Financial Statements, and every other standard 10-K Item, detected and normalized automatically from raw filing HTML</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="pd-card">
+                <h4><i class="bi bi-diagram-3"></i>Pipeline</h4>
+                <ol>
+                  <li><strong>Ingestion</strong> — downloads filings directly from SEC EDGAR (<code>sec-edgar-downloader</code>) for a given ticker and year range, no manual file handling.</li>
+                  <li><strong>Parsing</strong> — a custom BeautifulSoup-based parser strips SEC's iXBRL/HTML boilerplate and detects Item/Part headings, so each chunk keeps its section context instead of becoming an anonymous blob of text.</li>
+                  <li><strong>Chunking + embedding</strong> — <code>RecursiveCharacterTextSplitter</code> (1000 chars, 150 overlap) feeds a local Hugging Face embedding model (<code>all-MiniLM-L6-v2</code>), so no API key or internet round-trip is required per query.</li>
+                  <li><strong>Vector store</strong> — ChromaDB, persisted locally, with metadata per chunk (ticker, form type, fiscal year, Item, source path) enabling precise filtering, not just semantic search.</li>
+                  <li><strong>Generation</strong> — retrieved chunks are numbered and injected into a prompt template that instructs the LLM (Ollama, <code>llama3.2</code>, temperature 0) to answer only from context, cite every claim as <code>[n]</code>, and explicitly refuse when the answer isn't present rather than fabricate one.</li>
+                  <li><strong>Evaluation</strong> — a hand-written suite of Q&A test cases runs automatically, checking citation presence, correct fiscal-year attribution, and appropriate refusal on out-of-scope questions (see Key findings below).</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="pd-card">
+                <h4><i class="bi bi-graph-up-arrow"></i>Key findings</h4>
+                <table class="pd-table mb-3">
+                  <thead>
+                    <tr><th>Eval check</th><th>What it catches</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Citation presence</td><td>Answer includes at least one <code>[n]</code> reference</td></tr>
+                    <tr><td>Fiscal-year match</td><td>All cited chunks come from the requested filing year</td></tr>
+                    <tr><td>Refusal behavior</td><td>Out-of-scope questions are declined, not fabricated</td></tr>
+                  </tbody>
+                </table>
+                <ul>
+                  <li>The pipeline correctly refused questions about other companies, live stock prices, and general knowledge, rather than blending in unrelated context.</li>
+                  <li>Fiscal-year filtering was validated end-to-end: an early bug caused chunks from a mislabeled filing year to pollute the store — caught and fixed by testing retrieval against known filings rather than trusting the ingestion log alone.</li>
+                  <li>Running on a small local model (<code>llama3.2</code>, not a frontier API model) trades some citation-formatting reliability for zero API cost and full data privacy — documented as an explicit limitation rather than hidden.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="pd-card">
+                <h4><i class="bi bi-tools"></i>Tech stack</h4>
+                <div class="stack-badges">
+                  <span class="stack-badge">Python</span>
+                  <span class="stack-badge">LangChain</span>
+                  <span class="stack-badge">ChromaDB</span>
+                  <span class="stack-badge">Ollama</span>
+                  <span class="stack-badge">Hugging Face</span>
+                  <span class="stack-badge">BeautifulSoup</span>
+                  <span class="stack-badge">Streamlit</span>
+                  <span class="stack-badge">SEC EDGAR API</span>
+                </div>
+                <p class="pd-note">Full source, ingestion CLI, eval harness, and setup instructions are in the <a href="https://github.com/cabluemgeek/ask-your-10-k" target="_blank">GitHub repo →</a></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Details Section -->
+
+  </main>
+
+  <footer id="footer" class="footer light-background">
+
+    <div class="container">
+      <div class="copyright text-center ">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Kamelia ZENATI</strong> <span>All Rights Reserved<br></span></p>
+      </div>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://github.com/cabluemgeek" class="github"><i class="bi bi-github-x"></i></a>
+        <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="credits">
+       
+        Designed by <a>Kamelia ZENATI</a> 
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+<!-- Google Translate Widget -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'fr,en,ar,es',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+
+  function setLangCookie(lang) {
+    const value = '/en/' + lang;
+    document.cookie = 'googtrans=' + value + '; path=/';
+    document.cookie = 'googtrans=' + value + '; path=/; domain=' + window.location.hostname;
+  }
+
+  function clearLangCookie() {
+    document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    document.cookie = 'googtrans=; path=/; domain=' + window.location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+  }
+
+  function changeLanguage(lang) {
+    if (lang === 'en') {
+      clearLangCookie();
+    } else {
+      setLangCookie(lang);
+    }
+    window.location.reload();
+  }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+  const langBtn = document.getElementById('langBtn');
+  const langSwitcher = document.querySelector('.lang-switcher');
+  const langItems = document.querySelectorAll('.lang-dropdown li');
+  const currentLangLabel = document.getElementById('currentLang');
+
+  langBtn.addEventListener('click', () => {
+    langSwitcher.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!langSwitcher.contains(e.target)) {
+      langSwitcher.classList.remove('open');
+    }
+  });
+
+  langItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const lang = item.getAttribute('data-lang');
+      changeLanguage(lang);
+    });
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const match = document.cookie.match(/googtrans=\/en\/(\w+)/);
+    const activeLang = match ? match[1] : 'en';
+    currentLangLabel.textContent = activeLang.toUpperCase();
+    langItems.forEach(i => {
+      i.classList.toggle('active', i.getAttribute('data-lang') === activeLang);
+    });
+  });
+</script>
+</body>
+
+</html>
