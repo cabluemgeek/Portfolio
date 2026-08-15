@@ -9,8 +9,8 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/medias/img/favicon.png" rel="icon">
+  <link href="assets/medias/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -27,7 +27,7 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
- 
+ <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
 </head>
 
 <body class="portfolio-page">
@@ -37,7 +37,7 @@
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <!-- <img src="assets\img/logo.png" alt=""> -->
         <h1 class="sitename">Kamelia ZENATI</h1>
       </a>
 
@@ -57,6 +57,23 @@
         <a href="https://github.com/cabluemgeek" class="github"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
+<!-- Bouton traducteur personnalisé -->
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" id="langBtn" type="button">
+    <i class="bi bi-globe2"></i>
+    <span id="currentLang">EN</span>
+    <i class="bi bi-chevron-down lang-chevron"></i>
+  </button>
+  <ul class="lang-dropdown" id="langDropdown">
+    <li data-lang="en"><span class="flag">🇬🇧</span> English</li>
+    <li data-lang="fr"><span class="flag">🇫🇷</span> Français</li>
+    <li data-lang="ar"><span class="flag">🇩🇿</span> العربية</li>
+    <li data-lang="es"><span class="flag">🇪🇸</span> Español</li>
+  </ul>
+</div>
+
+<!-- Google Translate reste présent mais totalement invisible -->
+<div id="google_translate_element" style="display:none;"></div>
 
     </div>
   </header>
@@ -86,91 +103,91 @@
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets\img\portfolio\Customer-Churn-la-gi.png" class="img-fluid" alt="">
+              <img src="assets\medias\img\Customer-Churn-la-gi.png" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Customer Churn Analysis</h4>
                 <p>Classification, survival analysis, and a live risk predictor for bank customer retention</p>
-                <a href="assets\img\portfolio\Customer-Churn-la-gi.png" title="CustomerChurn Analysis" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\Customer-Churn-la-gi.png" title="CustomerChurn Analysis" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="Churn-analysis-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets\img\portfolio\risk-analysis.jpg" class="img-fluid" alt="">
+              <img src="assets\medias\img\risk-analysis.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Credit Risk Scoring</h4>
                 <p>Model comparison, feature ranking, and scorecard results from the trained pipeline</p>
-                <a href="assets\img\portfolio\risk-analysis.jpg" title="Credit Risk Scoring" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\risk-analysis.jpg" title="Credit Risk Scoring" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="Credit-risk-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets\img\portfolio\market_risk.jpg" class="img-fluid" alt="">
+              <img src="assets\medias\img\market_risk.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Market Risk Dashboard</h4>
                 <p>Model comparison, feature ranking, and scorecard results from the trained pipeline</p>
-                <a href="assets\img\portfolio\market_risk.jpg" title="Market Risk Dashboard" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\market_risk.jpg" title="Market Risk Dashboard" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="market-risk-dash.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets\img\portfolio\ask_your_10k.png" class="img-fluid" alt="">
+              <img src="assets\medias\img\ask_your_10k.png" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Ask Your 10-K</h4>
                 <p>A local, citation-grounded RAG assistant for querying SEC filings in plain English</p>
-                <a href="assets\img\portfolio\ask_your_10k.png" title="Ask Your 10-K" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\ask_your_10k.png" title="Ask Your 10-K" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="ask-your-10K.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets\img\portfolio\data-extr.jpg" class="img-fluid" alt="">
+              <img src="assets\medias\img\data-extr.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>SQL Data Extraction</h4>
                 <p>Lorem ipsum, dolor sit</p>
-                <a href="assets\img\portfolio\data-extr.jpg" title="SQL Data Extraction" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\data-extr.jpg" title="SQL Data Extraction" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="data-extr-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets\img\portfolio\sentiment analysis.jpg" class="img-fluid" alt="">
+              <img src="assets\medias\img\sentiment analysis.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Feedback Sentiment Analysis - NLP</h4>
                 <p>Sentiment and aspect classification on Yassir app reviews — French, English, and Algerian Arabic (darija)</p>
-                <a href="assets\img\portfolio\sentiment analysis.jpg" title="Feedback Sentiment Analysis - NLP" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\sentiment analysis.jpg" title="Feedback Sentiment Analysis - NLP" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="feedback-nlp-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets\img\portfolio\crude oil.png" class="img-fluid" alt="">
+              <img src="assets\medias\img\crude oil.png" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Crude Oil Price Prediction</h4>
                 <p>Crude oil price forecasting with classical ML, deep learning and hybrid models</p>
-                <a href="assets\img\portfolio\crude oil.png" title="Crude Oil Price Prediction" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\crude oil.png" title="Crude Oil Price Prediction" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="Crude-oil-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets\img\portfolio\data viz.jpg" class="img-fluid" alt="">
+              <img src="assets\medias\img\data viz.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Interactive Dashboards</h4>
                 <p>Lorem ipsum, dolor sit</p>
-                <a href="assets\img\portfolio\data viz.jpg" title="Interactive Dashboards" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\data viz.jpg" title="Interactive Dashboards" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets\img\portfolio\ride haiiling.png" class="img-fluid" alt="">
+              <img src="assets\medias\img\ride haiiling.png" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Trip Price Prediction</h4>
                 <p>Ride-hailing analytics and fee prediction on Algerian trip data</p>
-                <a href="assets\img\portfolio\ride haiiling.png" title="Trip Price Prediction" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets\medias\img\ride haiiling.png" title="Trip Price Prediction" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="trip-price-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->

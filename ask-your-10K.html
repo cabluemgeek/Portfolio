@@ -9,8 +9,8 @@
   <meta name="keywords" content="RAG, retrieval augmented generation, LangChain, ChromaDB, Ollama, LLM, SEC filings, finance, data science">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/medias/img/favicon.png" rel="icon">
+  <link href="assets/medias/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -250,13 +250,14 @@
               </script>
 <!-- Demo recording: this project runs on a local Ollama LLM, so it can't be
      deployed to a public URL the way a static Streamlit app can. A short
-     screen recording (GIF/MP4) of a real Q&A exchange stands in for the
+     screen recording of a real Q&A exchange stands in for the
      live-app embed used on other project pages. -->
             <div class="mt-4" data-aos="fade-up" data-aos-delay="150">
               <h3 class="mb-3">Demo</h3>
-              <img src="assets/img/portfolio/ask-your-10k-demo.gif"
-                   alt="Ask Your 10-K demo: asking a question about Apple's 10-K and receiving a cited answer"
-                   class="demo-media">
+              <video class="demo-media" controls preload="metadata">
+                <source src="assets/medias/videos/ask-your-10k-demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
               <div class="local-note">
                 <strong>Instructions on how to use the Ask Your 10-K:</strong> First select the ticker (AAPL, MSFT, TSLA, etc.), the form type (10-K, 10-Q, 8-K) and the fiscal year of the 10-K you want to query. Before typing your question, make sure you have selected the correct parameters and Ingested/re-Ingested the filings. Then type your question in plain English. The assistant will return an answer with citations that link to the exact section of the filing where the information was found. If the answer isn't in the filings, it will let you know instead of guessing.
               </div>
@@ -274,6 +275,7 @@
                 <li><strong>Data source</strong>: SEC EDGAR (live 10-K filings, any ticker)</li>
                 <li><strong>Stack</strong>: LangChain, ChromaDB, Ollama (llama3.2), Hugging Face embeddings, Streamlit</li>
                 <li><strong>Link to github</strong>: <a href="https://github.com/cabluemgeek/ask-your-10-k" target="_blank">GitHub repo →</a></li>
+                <li><strong>Link to App</strong>: <a href="https://ask-your-10k-j8hhsod3vdh2sqwrfgttzs.streamlit.app/" target="_blank">View App →</a></li>
                 <li><strong>Eval report</strong>: <a href="https://github.com/cabluemgeek/ask-your-10-k/blob/main/eval/results.md" target="_blank">View eval results →</a></li>
               </ul>
             </div>
