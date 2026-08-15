@@ -55,6 +55,21 @@
     .key-findings li {
       margin-bottom: 10px;
     }
+    .demo-media {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      display: block;
+    }
+    .local-note {
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      border-left: 3px solid var(--accent-color);
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
 
     /* ---- Project Deep Dive (uniform block, all portfolio detail pages) ---- */
     .project-deepdive {
@@ -254,7 +269,19 @@
                 </a>
               </p>
             </div>
-             
+
+<!-- Demo recording: a walkthrough of the churn risk predictor, showing a
+     sample customer profile scored live by the trained XGBoost model. -->
+            <div class="mt-5" data-aos="fade-up" data-aos-delay="200">
+              <h3 class="mb-3">Demo</h3>
+              <video class="demo-media" controls preload="metadata">
+                <source src="assets/medias/videos/customer-churn-risk-predictor-demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="local-note">
+                <strong>What this shows:</strong> a walkthrough of the Bank Customer Churn Risk Predictor — filling in a customer profile (credit score, geography, age, tenure, balance, products held, and activity status), then running the trained XGBoost model to get a live churn probability, risk level, and revenue-at-risk estimate.
+              </div>
+            </div>
 
               <div class="swiper-pagination"></div>
             </div>
