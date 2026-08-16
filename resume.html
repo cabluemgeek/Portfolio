@@ -27,6 +27,32 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- Download CV button styling (scoped, won't clash with main.css) -->
+  <style>
+    .cv-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 10px 22px;
+      background-color: #4b3f72; /* purple, matches sidebar theme */
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .cv-download-btn:hover {
+      background-color: #3a3059;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .cv-download-btn i {
+      font-size: 17px;
+    }
+  </style>
+
    <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
 
 </head>
@@ -105,6 +131,10 @@
                 <li>+33 7 67 00 70 59</li>
                 <li>zenatikamelia@gmail.com</li>
               </ul>
+
+              <a href="assets\medias\pdf\Mon CV - Kamelia ZENATI.pdf" class="cv-download-btn" download>
+                <i class="bi bi-download"></i> Download CV
+              </a>
             </div><!-- Edn Resume Item -->
 
             <h3 class="resume-title">Education</h3>
