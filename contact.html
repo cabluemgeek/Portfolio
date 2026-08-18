@@ -3,6 +3,12 @@
 
 <head>
   <meta charset="utf-8">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    })();
+  </script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Contact - Kamelia ZENATI</title>
   <meta name="description" content="">
@@ -58,6 +64,11 @@
         <a href="https://github.com/cabluemgeek" class="github"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
+
+      <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="Toggle light and dark theme" title="Toggle light / dark theme">
+        <i class="bi bi-moon-stars-fill"></i>
+        <i class="bi bi-sun-fill"></i>
+      </button>
 <!-- Bouton traducteur personnalisé -->
 <div class="lang-switcher">
   <button class="lang-switcher-btn" id="langBtn" type="button">
@@ -270,6 +281,18 @@
       i.classList.toggle('active', i.getAttribute('data-lang') === activeLang);
     });
   });
+</script>
+<script>
+  (function () {
+    var themeBtn = document.getElementById('themeToggle');
+    if (!themeBtn) return;
+    themeBtn.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
 </script>
 </body>
 

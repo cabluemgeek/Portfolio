@@ -3,6 +3,12 @@
 
 <head>
   <meta charset="utf-8">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+    })();
+  </script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Portfolio - Kamelia ZENATI</title>
   <meta name="description" content="">
@@ -37,7 +43,7 @@
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets\img/logo.png" alt=""> -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">Kamelia ZENATI</h1>
       </a>
 
@@ -57,6 +63,11 @@
         <a href="https://github.com/cabluemgeek" class="github"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
+
+      <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="Toggle light and dark theme" title="Toggle light / dark theme">
+        <i class="bi bi-moon-stars-fill"></i>
+        <i class="bi bi-sun-fill"></i>
+      </button>
 <!-- Bouton traducteur personnalisé -->
 <div class="lang-switcher">
   <button class="lang-switcher-btn" id="langBtn" type="button">
@@ -103,92 +114,121 @@
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets\medias\img\Customer-Churn-la-gi.png" class="img-fluid" alt="">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/customer_churn_dark.png" class="img-fluid theme-img-dark" alt="Customer Churn Analysis - dark theme preview">
+                <img src="assets/medias/img/customer_churn_light.png" class="img-fluid theme-img-light" alt="Customer Churn Analysis - light theme preview">
               <div class="portfolio-info">
                 <h4>Customer Churn Analysis</h4>
                 <p>Classification, survival analysis, and a live risk predictor for bank customer retention</p>
-                <a href="assets\medias\img\Customer-Churn-la-gi.png" title="CustomerChurn Analysis" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets/medias/img/customer_churn_dark.png" title="CustomerChurn Analysis" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="Churn-analysis-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets\medias\img\risk-analysis.jpg" class="img-fluid" alt="">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/credi_risk_scoring_dark.png" class="img-fluid theme-img-dark" alt="Credit Risk Scoring - dark theme preview">
+                <img src="assets/medias/img/credi_risk_scoring_light.png" class="img-fluid theme-img-light" alt="Credit Risk Scoring - light theme preview">
               <div class="portfolio-info">
                 <h4>Credit Risk Scoring</h4>
                 <p>Model comparison, feature ranking, and scorecard results from the trained pipeline</p>
-                <a href="assets\medias\img\risk-analysis.jpg" title="Credit Risk Scoring" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets/medias/img/credi_risk_scoring_dark.png" title="Credit Risk Scoring" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="Credit-risk-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets\medias\img\market_risk.jpg" class="img-fluid" alt="">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/market_risk_dash_dark.png" class="img-fluid theme-img-dark" alt="Market Risk Dashboard - dark theme preview">
+                <img src="assets/medias/img/market_risk_dash_light.png" class="img-fluid theme-img-light" alt="Market Risk Dashboard - light theme preview">
               <div class="portfolio-info">
                 <h4>Market Risk Dashboard</h4>
                 <p>Model comparison, feature ranking, and scorecard results from the trained pipeline</p>
-                <a href="assets\medias\img\market_risk.jpg" title="Market Risk Dashboard" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets/medias/img/market_risk_dash_dark.png" title="Market Risk Dashboard" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="market-risk-dash.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets\medias\img\ask_your_10k.png" class="img-fluid" alt="">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/ask_your_10k_dark.png" class="img-fluid theme-img-dark" alt="Ask Your 10-K - dark theme preview">
+                <img src="assets/medias/img/ask_your_10k_light.png" class="img-fluid theme-img-light" alt="Ask Your 10-K - light theme preview">
               <div class="portfolio-info">
                 <h4>Ask Your 10-K</h4>
                 <p>A local, citation-grounded RAG assistant for querying SEC filings in plain English</p>
-                <a href="assets\medias\img\ask_your_10k.png" title="Ask Your 10-K" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets/medias/img/ask_your_10k_dark.png" title="Ask Your 10-K" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="ask-your-10K.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets\medias\img\data-extr.jpg" class="img-fluid" alt="">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/sql_light.png" class="img-fluid theme-img-light" alt="SQL Proficiency - light theme preview">
+                <img src="assets/medias/img/sql_dark.png" class="img-fluid theme-img-dark" alt="SQL Proficiency - dark theme preview">
               <div class="portfolio-info">
-                <h4>SQL Data Extraction</h4>
+                <h4>SQL Proficiency</h4>
                 <p>Lorem ipsum, dolor sit</p>
-                <a href="assets\medias\img\data-extr.jpg" title="SQL Data Extraction" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets/medias/img/sql_dark.png" title="SQL Proficiency" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="data-extr-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets\medias\img\sentiment analysis.jpg" class="img-fluid" alt="">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/nlp_light.png" class="img-fluid theme-img-light" alt="Feedback Sentiment Analysis - NLP - light theme preview">
+                <img src="assets/medias/img/nlp_dark.png" class="img-fluid theme-img-dark" alt="Feedback Sentiment Analysis - NLP - dark theme preview">
               <div class="portfolio-info">
                 <h4>Feedback Sentiment Analysis - NLP</h4>
                 <p>Sentiment and aspect classification on Yassir app reviews — French, English, and Algerian Arabic (darija)</p>
-                <a href="assets\medias\img\sentiment analysis.jpg" title="Feedback Sentiment Analysis - NLP" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets/medias/img/nlp_dark.png" title="Feedback Sentiment Analysis - NLP" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="feedback-nlp-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
               </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets\medias\img\crude oil.png" class="img-fluid" alt="">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/crude_oil_pred_dark.png" class="img-fluid theme-img-dark" alt="Crude Oil Price Prediction - dark theme preview">
+                <img src="assets/medias/img/crude_oil_pred_light.png" class="img-fluid theme-img-light" alt="Crude Oil Price Prediction - light theme preview">
               <div class="portfolio-info">
                 <h4>Crude Oil Price Prediction</h4>
                 <p>Crude oil price forecasting with classical ML, deep learning and hybrid models</p>
-                <a href="assets\medias\img\crude oil.png" title="Crude Oil Price Prediction" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets/medias/img/crude_oil_pred_dark.png" title="Crude Oil Price Prediction" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="Crude-oil-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets\medias\img\data viz.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Interactive Dashboards</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets\medias\img\data viz.jpg" title="Interactive Dashboards" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/agentic_portfolio_dark.png" class="img-fluid theme-img-dark" alt="Agentic Portfolio Copilot - dark theme preview">
+                <img src="assets/medias/img/agentic_portfolio_light.png" class="img-fluid theme-img-light" alt="Agentic Portfolio Copilot - light theme preview">
+              <div class="portfolio-info">
+                <h4>Agentic Portfolio Copilot</h4>
+                <p>Lorem ipsum, dolor sit</p>
+                <a href="assets/medias/img/agentic_portfolio_dark.png" title="Agentic Portfolio Copilot" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="agentic-portfolio-copilot.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          
+
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets\medias\img\ride haiiling.png" class="img-fluid" alt="">
+              <div class="portfolio-thumb">
+                <img src="assets/medias/img/ride_hailing_dark.png" class="img-fluid theme-img-dark" alt="Trip Price Prediction - dark theme preview">
+                <img src="assets/medias/img/ride_hailing_light.png" class="img-fluid theme-img-light" alt="Trip Price Prediction - light theme preview">
               <div class="portfolio-info">
                 <h4>Trip Price Prediction</h4>
                 <p>Ride-hailing analytics and fee prediction on Algerian trip data</p>
-                <a href="assets\medias\img\ride haiiling.png" title="Trip Price Prediction" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="assets/medias/img/ride_hailing_dark.png" title="Trip Price Prediction" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="trip-price-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
               </div>
             </div><!-- End Portfolio Item -->
 
@@ -325,6 +365,18 @@
       i.classList.toggle('active', i.getAttribute('data-lang') === activeLang);
     });
   });
+</script>
+<script>
+  (function () {
+    var themeBtn = document.getElementById('themeToggle');
+    if (!themeBtn) return;
+    themeBtn.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
 </script>
 </body>
 

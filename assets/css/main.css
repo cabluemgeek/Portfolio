@@ -1,15 +1,4 @@
-/**
-* Template Name: Kelly
-* Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -19,12 +8,69 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #222222; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #34b7a7; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --background-color: #0d1117; /* Background color for the entire website, including individual sections */
+  --default-color: #b4b4b4; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #f2f2f0; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #e8823c; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #161b22; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #0d1117; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+}
+
+/* Light theme override - activated via html[data-theme="light"], set by the theme toggle button.
+   This restores the site's original palette exactly. */
+html[data-theme="light"] {
+  --background-color: #ffffff;
+  --default-color: #444444;
+  --heading-color: #222222;
+  --accent-color: #34b7a7;
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+  --nav-color: #444444;
+  --nav-hover-color: #34b7a7;
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #444444;
+  --nav-dropdown-hover-color: #34b7a7;
+  --lang-accent: #1F2937;
+  --lang-accent-light: #F3F4F6;
+}
+
+html[data-theme="light"] .light-background {
+  --background-color: #e9e8e6;
+  --surface-color: #ffffff;
+}
+
+html[data-theme="light"] .dark-background {
+  --background-color: #060606;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #252525;
+  --contrast-color: #ffffff;
+}
+
+html[data-theme="light"] .lang-dropdown {
+  background: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme="light"] .lang-dropdown li {
+  color: #374151;
+}
+
+html[data-theme="light"] .lang-switcher-btn {
+  border-color: #e0e0e0;
+}
+
+/* Smooth palette swap when the theme toggle is used */
+body,
+.header,
+.footer,
+section,
+.section,
+.light-background,
+.dark-background {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
 /*background picture*/
 #hero {
@@ -47,30 +93,39 @@
   z-index: 1;
 }
 
+#hero .hero-network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #444444;  /* The default color of the main navmenu links */
-  --nav-hover-color: #34b7a7; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #34b7a7; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #b4b4b4;  /* The default color of the main navmenu links */
+  --nav-hover-color: #e8823c; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #0d1117; /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #161b22; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #b4b4b4; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #e8823c; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
-  --background-color: #e9e8e6;
-  --surface-color: #ffffff;
+  --background-color: #161b22;
+  --surface-color: #1c2128;
 }
 
 .dark-background {
-  --background-color: #060606;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --surface-color: #252525;
-  --contrast-color: #ffffff;
+  --background-color: #0a0e14;
+  --default-color: #f2f2f0;
+  --heading-color: #f2f2f0;
+  --surface-color: #161b22;
+  --contrast-color: #f2f2f0;
 }
 
 /* Smooth scroll */
@@ -84,7 +139,35 @@
 body {
   color: var(--default-color);
   background-color: var(--background-color);
+  background-image:
+    /* distant stars */
+    radial-gradient(1.5px 1.5px at 8% 12%, rgba(255,255,255,0.65), transparent 60%),
+    radial-gradient(1px 1px at 18% 38%, rgba(255,255,255,0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 32% 8%, rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(1px 1px at 46% 55%, rgba(255,255,255,0.35), transparent 60%),
+    radial-gradient(1.5px 1.5px at 62% 22%, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(1px 1px at 74% 65%, rgba(255,255,255,0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 13% 78%, rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(1px 1px at 91% 33%, rgba(255,255,255,0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 55% 88%, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(1px 1px at 28% 95%, rgba(255,255,255,0.3), transparent 60%),
+    radial-gradient(1px 1px at 85% 85%, rgba(255,255,255,0.35), transparent 60%),
+    radial-gradient(1.5px 1.5px at 96% 12%, rgba(255,255,255,0.5), transparent 60%),
+    /* soft beam of light, like a distant sun catching the scene */
+    radial-gradient(1000px circle at 85% -8%, rgba(255, 244, 230, 0.09), transparent 55%),
+    radial-gradient(700px circle at 90% 5%, rgba(255, 255, 255, 0.05), transparent 50%),
+    /* warm and cool nebula glows */
+    radial-gradient(650px circle at 88% 6%, color-mix(in srgb, var(--accent-color), transparent 82%), transparent 60%),
+    radial-gradient(550px circle at 100% 42%, color-mix(in srgb, var(--accent-color), transparent 90%), transparent 60%),
+    radial-gradient(600px circle at 8% 20%, rgba(120, 100, 220, 0.06), transparent 60%),
+    radial-gradient(500px circle at 4% 88%, rgba(130, 110, 220, 0.05), transparent 65%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: var(--default-font);
+}
+
+html[data-theme="light"] body {
+  background-image: none;
 }
 
 a {
@@ -209,6 +292,51 @@ h6 {
   line-height: 0px;
 }
 
+/*--------------------------------------------------------------
+# Theme Toggle
+--------------------------------------------------------------*/
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 242, 240, 0.2);
+  background: transparent;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 88%);
+  border-color: var(--accent-color);
+}
+
+.theme-toggle-btn i {
+  pointer-events: none;
+}
+
+.theme-toggle-btn .bi-sun-fill {
+  display: none;
+}
+
+html[data-theme="light"] .theme-toggle-btn {
+  border-color: rgba(27, 27, 27, 0.15);
+}
+
+html[data-theme="light"] .theme-toggle-btn .bi-moon-stars-fill {
+  display: none;
+}
+
+html[data-theme="light"] .theme-toggle-btn .bi-sun-fill {
+  display: block;
+}
+
 @media (max-width: 1200px) {
   .header .logo {
     order: 1;
@@ -255,8 +383,8 @@ body {
   color: #000;
 }
 :root {
-  --lang-accent: #1F2937;
-  --lang-accent-light: #F3F4F6;
+  --lang-accent: #e8823c;
+  --lang-accent-light: #1c2128;
 }
 
 .lang-switcher {
@@ -269,7 +397,7 @@ body {
   align-items: center;
   gap: 6px;
   background: transparent;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(242, 242, 240, 0.2);
   border-radius: 20px;
   padding: 6px 14px;
   font-size: 13px;
@@ -301,9 +429,10 @@ body {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  background: #fff;
+  background: #161b22;
+  border: 1px solid rgba(242, 242, 240, 0.12);
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
   list-style: none;
   margin: 0;
   padding: 6px;
@@ -328,7 +457,7 @@ body {
   padding: 8px 12px;
   border-radius: 8px;
   font-size: 13.5px;
-  color: #374151;
+  color: #e6e6e4;
   cursor: pointer;
   transition: background 0.15s ease;
 }
@@ -797,7 +926,7 @@ body {
 section,
 .section {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: transparent;
   padding: 60px 0;
   scroll-margin-top: 100px;
   overflow: clip;
@@ -1357,7 +1486,47 @@ section,
 
 .portfolio .portfolio-item {
   position: relative;
+}
+
+.portfolio .portfolio-item .portfolio-thumb {
+  position: relative;
   overflow: hidden;
+  border-radius: 16px;
+  padding: 10px;
+  background: var(--surface-color);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="light"] .portfolio .portfolio-item .portfolio-thumb {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.portfolio .portfolio-item .portfolio-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Theme-adaptive banners: images tagged theme-img-dark / theme-img-light
+   swap automatically with the site's dark/light toggle. Images without
+   these classes are shown regardless of theme.
+   NOTE: selectors below match/exceed the specificity of
+   ".portfolio .portfolio-item .portfolio-thumb img" (which sets
+   display:block on every thumb image) so the show/hide toggle actually wins. */
+.portfolio .portfolio-item .portfolio-thumb img.theme-img-light,
+.portfolio-details .portfolio-details-slider img.theme-img-light {
+  display: none;
+}
+
+html[data-theme="light"] .portfolio .portfolio-item .portfolio-thumb img.theme-img-dark,
+html[data-theme="light"] .portfolio-details .portfolio-details-slider img.theme-img-dark {
+  display: none;
+}
+
+html[data-theme="light"] .portfolio .portfolio-item .portfolio-thumb img.theme-img-light,
+html[data-theme="light"] .portfolio-details .portfolio-details-slider img.theme-img-light {
+  display: block;
 }
 
 .portfolio .portfolio-item .portfolio-info {

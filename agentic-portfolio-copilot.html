@@ -10,9 +10,9 @@
     })();
   </script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Ask Your 10-K - Project Details</title>
-  <meta name="description" content="Local, citation-grounded RAG assistant for SEC 10-K filings, built with LangChain, ChromaDB, and Ollama.">
-  <meta name="keywords" content="RAG, retrieval augmented generation, LangChain, ChromaDB, Ollama, LLM, SEC filings, finance, data science">
+  <title>Agentic Portfolio Copilot - Project Details</title>
+  <meta name="description" content="Agentic risk & holdings assistant: a LangGraph agent that routes to deeper risk analysis when it detects a sector concentration flag, running fully local on Ollama.">
+  <meta name="keywords" content="LangGraph, agentic AI, Ollama, Llama 3.1, portfolio risk, VaR, drawdown, data science, finance">
 
   <!-- Favicons -->
   <link href="assets/medias/img/favicon.png" rel="icon">
@@ -33,9 +33,10 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
- <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
+  <div id="google_translate_element" style="position:absolute; left:-9999px; top:-9999px;"></div>
 
   <style>
+    /* small additions for this page only — chart embeds and the live app frame */
     .chart-embed {
       width: 100%;
       height: 480px;
@@ -205,23 +206,23 @@
         <i class="bi bi-moon-stars-fill"></i>
         <i class="bi bi-sun-fill"></i>
       </button>
-<!-- Bouton traducteur personnalisé -->
-<div class="lang-switcher">
-  <button class="lang-switcher-btn" id="langBtn" type="button">
-    <i class="bi bi-globe2"></i>
-    <span id="currentLang">EN</span>
-    <i class="bi bi-chevron-down lang-chevron"></i>
-  </button>
-  <ul class="lang-dropdown" id="langDropdown">
-    <li data-lang="en"><span class="flag">🇬🇧</span> English</li>
-    <li data-lang="fr"><span class="flag">🇫🇷</span> Français</li>
-    <li data-lang="ar"><span class="flag">🇩🇿</span> العربية</li>
-    <li data-lang="es"><span class="flag">🇪🇸</span> Español</li>
-  </ul>
-</div>
+      <!-- Bouton traducteur personnalisé -->
+      <div class="lang-switcher">
+        <button class="lang-switcher-btn" id="langBtn" type="button">
+          <i class="bi bi-globe2"></i>
+          <span id="currentLang">EN</span>
+          <i class="bi bi-chevron-down lang-chevron"></i>
+        </button>
+        <ul class="lang-dropdown" id="langDropdown">
+          <li data-lang="en"><span class="flag">🇬🇧</span> English</li>
+          <li data-lang="fr"><span class="flag">🇫🇷</span> Français</li>
+          <li data-lang="ar"><span class="flag">🇩🇿</span> العربية</li>
+          <li data-lang="es"><span class="flag">🇪🇸</span> Español</li>
+        </ul>
+      </div>
 
-<!-- Google Translate reste présent mais totalement invisible -->
-<div id="google_translate_element" style="display:none;"></div>
+      <!-- Google Translate reste présent mais totalement invisible -->
+      <div id="google_translate_element" style="display:none;"></div>
 
     </div>
   </header>
@@ -233,8 +234,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Ask Your 10-K</h2>
-        <p>A local, citation-grounded RAG assistant for querying SEC filings in plain English</p>
+        <h2>Agentic Portfolio Copilot</h2>
+        <p>A LangGraph agent that routes to deeper risk analysis when it detects a concentration flag — running fully local, no API key</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -259,20 +260,17 @@
                   }
                 }
               </script>
-<!-- Demo recording: this project runs on a local Ollama LLM, so it can't be
-     deployed to a public URL the way a static Streamlit app can. A short
-     screen recording of a real Q&A exchange stands in for the
-     live-app embed used on other project pages. -->
-            <div class="mt-4" data-aos="fade-up" data-aos-delay="150">
-              <h3 class="mb-3">Demo</h3>
-              <video class="demo-media" controls preload="metadata">
-                <source src="assets/medias/videos/ask-your-10k-demo.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <div class="local-note">
-                <strong>Instructions on how to use the Ask Your 10-K:</strong> First select the ticker (AAPL, MSFT, TSLA, etc.), the form type (10-K, 10-Q, 8-K) and the fiscal year of the 10-K you want to query. Before typing your question, make sure you have selected the correct parameters and Ingested/re-Ingested the filings. Then type your question in plain English. The assistant will return an answer with citations that link to the exact section of the filing where the information was found. If the answer isn't in the filings, it will let you know instead of guessing.
+
+              <!-- Demo screenshots: a basic lookup (no risk flag) and a risk question
+                   that triggers the conditional routing to a deeper reasoning step. -->
+              <div class="mt-4" data-aos="fade-up" data-aos-delay="150">
+                <h3 class="mb-3">Demo</h3>
+                <img src="assets/medias/img/portfolio-copilot-demo-holdings.png" alt="Portfolio Copilot — basic holdings lookup" class="demo-media mb-3">
+                <img src="assets/medias/img/portfolio-copilot-demo-riskflag.png" alt="Portfolio Copilot — risk flag routed to deep analysis" class="demo-media">
+                <div class="local-note">
+                  <strong>What this shows:</strong> the same agent answering two different kinds of questions. A basic lookup ("What are my current holdings?") goes straight to an answer. A risk question ("Am I overconcentrated in any sector?") triggers a concentration flag, and the graph routes to a deeper reasoning step before answering — visible in the expandable "Agent reasoning trace" under every response, showing the exact tool called, its arguments, and its raw output.
+                </div>
               </div>
-            </div>
 
               <div class="swiper-pagination"></div>
             </div>
@@ -282,23 +280,23 @@
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3>Project information</h3>
               <ul>
-                <li><strong>Category</strong>: Data Science / GenAI / Finance</li>
-                <li><strong>Data source</strong>: SEC EDGAR (live 10-K filings, any ticker)</li>
-                <li><strong>Stack</strong>: LangChain, ChromaDB, Ollama (llama3.2), Hugging Face embeddings, Streamlit</li>
-                <li><strong>Link to github</strong>: <a href="https://github.com/cabluemgeek/ask-your-10-k" target="_blank">GitHub repo →</a></li>
-                <li><strong>Link to App</strong>: <a href="https://ask-your-10k-j8hhsod3vdh2sqwrfgttzs.streamlit.app/" target="_blank">View App →</a></li>
+                <li><strong>Category</strong>: Data Science / Agentic AI</li>
+                <li><strong>Data</strong>: Synthetic portfolio (14 US large-caps, 6 sectors)</li>
+                <li><strong>Stack</strong>: Python, LangGraph, Ollama (Llama 3.1 8B), Streamlit</li>
+                <li><strong>Link to github</strong>: <a href="https://github.com/cabluemgeek/Agentic-Portfolio-Copilot" target="_blank">GitHub repo →</a></li>
+                <li><strong>Live app</strong>: <a href="https://agentic-portfolio-copilot.streamlit.app/" target="_blank">Live demo →</a></li>
               </ul>
             </div>
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Answers you can actually verify</h2>
+              <h2>An agent whose path changes, not just its answer</h2>
               <p>
-                Generic chatbots will confidently answer financial questions with numbers they
-                made up. This project takes the opposite approach: every factual claim in an
-                answer is tied to a citation that maps to a real, retrieved excerpt from an
-                actual SEC filing — and if the answer isn't in the filings that were ingested,
-                the assistant says so instead of guessing. Built to demonstrate the full RAG
-                stack (embeddings, vector search, retrieval, prompt engineering, grounded
-                generation) applied where verifiability matters more than fluency.
+                A single LLM call with tools bolted on can call a function and describe the result —
+                that's a wrapper. What makes this agentic is that the graph's <em>path</em> changes based
+                on what a tool returns, not just what the user typed: a risk question that trips a
+                concentration threshold is routed to a second reasoning step before the agent answers,
+                while a plain lookup goes straight through. Built on LangGraph as a genuine state
+                machine, running on a local Llama 3.1 model via Ollama — reproducible by anyone who
+                clones the repo, no API key required.
               </p>
             </div>
           </div>
@@ -314,59 +312,55 @@
               <div class="pd-card">
                 <h4><i class="bi bi-bullseye"></i>Problem statement</h4>
                 <p>
-                  10-K filings are hundreds of pages of dense, structured disclosure — reading one
-                  end-to-end to answer a single question ("what were the main supply chain risks
-                  in FY2022?") is impractical, and asking a general-purpose chatbot risks a
-                  confident, fabricated answer. This project builds a retrieval pipeline that
-                  keeps every answer traceable to its source: the exact filing, fiscal year, and
-                  Item section it came from, with the underlying excerpt shown alongside the
-                  answer for the user to verify directly.
+                  Build an agent that reasons over a portfolio's holdings, sector concentration, VaR,
+                  and drawdowns — and instead of just reporting a number, automatically routes to a
+                  deeper explanation whenever a tool result crosses a risk threshold. The goal was to
+                  demonstrate genuine conditional planning (the graph's path depends on tool
+                  <em>output</em>, not just the question), full grounding (every number in an answer
+                  traceable to a tool call), and zero-cost reproducibility for anyone reviewing the code.
                 </p>
               </div>
             </div>
 
             <div class="col-lg-6">
               <div class="pd-card">
-                <h4><i class="bi bi-database"></i>Data</h4>
-                <p>Live SEC EDGAR filings, downloaded on demand for any ticker — not a static dataset.</p>
-                <ul>
-                  <li><strong>Coverage:</strong> Apple (AAPL) 10-K filings, fiscal years 2015–2025 ingested (11 filings, ~7,200 chunks)</li>
-                  <li><strong>Sections parsed:</strong> Item 1. Business, Item 1A. Risk Factors, Item 7. MD&A, Item 8. Financial Statements, and every other standard 10-K Item, detected and normalized automatically from raw filing HTML</li>
-                </ul>
+                <h4><i class="bi bi-diagram-3"></i>Architecture</h4>
+                <p>A LangGraph state machine, not a single tool-calling LLM call:</p>
+                <pre style="white-space: pre-wrap; font-size: 13px; margin: 0;">START → router → tool_exec → risk_check ─┬─ (flag raised) → deep_analysis → END
+                                            └─ (no flag)     → respond      → END</pre>
               </div>
             </div>
 
             <div class="col-lg-12">
               <div class="pd-card">
-                <h4><i class="bi bi-diagram-3"></i>Pipeline</h4>
+                <h4><i class="bi bi-gear"></i>What the agent can do</h4>
                 <ol>
-                  <li><strong>Ingestion</strong> — downloads filings directly from SEC EDGAR (<code>sec-edgar-downloader</code>) for a given ticker and year range, no manual file handling.</li>
-                  <li><strong>Parsing</strong> — a custom BeautifulSoup-based parser strips SEC's iXBRL/HTML boilerplate and detects Item/Part headings, so each chunk keeps its section context instead of becoming an anonymous blob of text.</li>
-                  <li><strong>Chunking + embedding</strong> — <code>RecursiveCharacterTextSplitter</code> (1000 chars, 150 overlap) feeds a local Hugging Face embedding model (<code>all-MiniLM-L6-v2</code>), so no API key or internet round-trip is required per query.</li>
-                  <li><strong>Vector store</strong> — ChromaDB, persisted locally, with metadata per chunk (ticker, form type, fiscal year, Item, source path) enabling precise filtering, not just semantic search.</li>
-                  <li><strong>Generation</strong> — retrieved chunks are numbered and injected into a prompt template that instructs the LLM (Ollama, <code>llama3.2</code>, temperature 0) to answer only from context, cite every claim as <code>[n]</code>, and explicitly refuse when the answer isn't present rather than fabricate one.</li>
-                  <li><strong>Evaluation</strong> — a hand-written suite of Q&A test cases runs automatically, checking citation presence, correct fiscal-year attribution, and appropriate refusal on out-of-scope questions (see Key findings below).</li>
+                  <li><strong>get_holdings</strong> — current positions, market values, and weights.</li>
+                  <li><strong>sector_exposure</strong> — weight by sector, with concentration flags above a configurable threshold.</li>
+                  <li><strong>compute_var</strong> — historical-simulation Value-at-Risk, parameterized by confidence level and horizon.</li>
+                  <li><strong>compute_drawdown</strong> — max drawdown, portfolio-wide or per ticker.</li>
+                  <li><strong>get_price_history</strong> — recent price series for a single ticker.</li>
+                  <li><strong>risk_check + deep_analysis</strong> — the conditional edge: when a tool result crosses a threshold (e.g. sector weight &gt; 25%), the graph routes to a second reasoning step that explains the risk and suggests a mitigation, instead of just stating the number.</li>
                 </ol>
               </div>
             </div>
 
             <div class="col-lg-7">
               <div class="pd-card">
-                <h4><i class="bi bi-graph-up-arrow"></i>Key findings</h4>
+                <h4><i class="bi bi-graph-up-arrow"></i>Eval results</h4>
                 <table class="pd-table mb-3">
                   <thead>
-                    <tr><th>Eval check</th><th>What it catches</th></tr>
+                    <tr><th>Metric</th><th>Score</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td>Citation presence</td><td>Answer includes at least one <code>[n]</code> reference</td></tr>
-                    <tr><td>Fiscal-year match</td><td>All cited chunks come from the requested filing year</td></tr>
-                    <tr><td>Refusal behavior</td><td>Out-of-scope questions are declined, not fabricated</td></tr>
+                    <tr><td>Tool selection accuracy</td><td><strong>0.917</strong></td></tr>
+                    <tr><td>Grounding rate</td><td><strong>1.0</strong></td></tr>
+                    <tr><td>Errors</td><td>0</td></tr>
                   </tbody>
                 </table>
                 <ul>
-                  <li>The pipeline correctly refused questions about other companies, live stock prices, and general knowledge, rather than blending in unrelated context.</li>
-                  <li>Fiscal-year filtering was validated end-to-end: an early bug caused chunks from a mislabeled filing year to pollute the store — caught and fixed by testing retrieval against known filings rather than trusting the ingestion log alone.</li>
-                  <li>Running on a small local model (<code>llama3.2</code>, not a frontier API model) trades some citation-formatting reliability for zero API cost and full data privacy — documented as an explicit limitation rather than hidden.</li>
+                  <li><strong>Grounding rate (1.0):</strong> every number in every answer, across 18 test questions, traces back to an actual tool result — checked by a custom harness, not eyeballed. Getting this proxy right (list-numbering artifacts, sign mismatches, legitimate rounding of summed figures) took several debugging passes, documented in <code>eval/eval_harness.py</code>.</li>
+                  <li><strong>Tool selection accuracy (0.917):</strong> the gap comes from two deliberately ambiguous questions ("How risky is my portfolio right now?" and "Has NVDA dropped a lot recently?"), where the local 8B router sometimes picks a plausible-but-incomplete tool rather than the full expected set — a documented, honest limitation of running the router on a free local model instead of a hosted frontier one.</li>
                 </ul>
               </div>
             </div>
@@ -376,15 +370,14 @@
                 <h4><i class="bi bi-tools"></i>Tech stack</h4>
                 <div class="stack-badges">
                   <span class="stack-badge">Python</span>
+                  <span class="stack-badge">LangGraph</span>
                   <span class="stack-badge">LangChain</span>
-                  <span class="stack-badge">ChromaDB</span>
                   <span class="stack-badge">Ollama</span>
-                  <span class="stack-badge">Hugging Face</span>
-                  <span class="stack-badge">BeautifulSoup</span>
+                  <span class="stack-badge">Llama 3.1 8B</span>
                   <span class="stack-badge">Streamlit</span>
-                  <span class="stack-badge">SEC EDGAR API</span>
+                  <span class="stack-badge">pytest</span>
                 </div>
-                <p class="pd-note">Full source, ingestion CLI, eval harness, and setup instructions are in the <a href="https://github.com/cabluemgeek/ask-your-10-k" target="_blank">GitHub repo →</a></p>
+                <p class="pd-note">Full eval harness, test suite, and reasoning-trace UI are in the <a href="https://github.com/cabluemgeek/Agentic-Portfolio-Copilot" target="_blank">GitHub repo →</a> — clone it and run <code>python eval/eval_harness.py</code> to reproduce the table above with no API key.</p>
               </div>
             </div>
 
@@ -408,8 +401,8 @@
         <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="credits">
-       
-        Designed by <a>Kamelia ZENATI</a> 
+
+        Designed by <a>Kamelia ZENATI</a>
       </div>
     </div>
 
@@ -434,71 +427,72 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-<!-- Google Translate Widget -->
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'fr,en,ar,es',
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-      autoDisplay: false
-    }, 'google_translate_element');
-  }
-
-  function setLangCookie(lang) {
-    const value = '/en/' + lang;
-    document.cookie = 'googtrans=' + value + '; path=/';
-    document.cookie = 'googtrans=' + value + '; path=/; domain=' + window.location.hostname;
-  }
-
-  function clearLangCookie() {
-    document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC';
-    document.cookie = 'googtrans=; path=/; domain=' + window.location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 UTC';
-  }
-
-  function changeLanguage(lang) {
-    if (lang === 'en') {
-      clearLangCookie();
-    } else {
-      setLangCookie(lang);
+  <!-- Google Translate Widget -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'fr,en,ar,es',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
     }
-    window.location.reload();
-  }
-</script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<script>
-  const langBtn = document.getElementById('langBtn');
-  const langSwitcher = document.querySelector('.lang-switcher');
-  const langItems = document.querySelectorAll('.lang-dropdown li');
-  const currentLangLabel = document.getElementById('currentLang');
-
-  langBtn.addEventListener('click', () => {
-    langSwitcher.classList.toggle('open');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!langSwitcher.contains(e.target)) {
-      langSwitcher.classList.remove('open');
+    function setLangCookie(lang) {
+      const value = '/en/' + lang;
+      document.cookie = 'googtrans=' + value + '; path=/';
+      document.cookie = 'googtrans=' + value + '; path=/; domain=' + window.location.hostname;
     }
-  });
 
-  langItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const lang = item.getAttribute('data-lang');
-      changeLanguage(lang);
-    });
-  });
+    function clearLangCookie() {
+      document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+      document.cookie = 'googtrans=; path=/; domain=' + window.location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    }
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const match = document.cookie.match(/googtrans=\/en\/(\w+)/);
-    const activeLang = match ? match[1] : 'en';
-    currentLangLabel.textContent = activeLang.toUpperCase();
-    langItems.forEach(i => {
-      i.classList.toggle('active', i.getAttribute('data-lang') === activeLang);
+    function changeLanguage(lang) {
+      if (lang === 'en') {
+        clearLangCookie();
+      } else {
+        setLangCookie(lang);
+      }
+      window.location.reload();
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script>
+    const langBtn = document.getElementById('langBtn');
+    const langSwitcher = document.querySelector('.lang-switcher');
+    const langItems = document.querySelectorAll('.lang-dropdown li');
+    const currentLangLabel = document.getElementById('currentLang');
+
+    langBtn.addEventListener('click', () => {
+      langSwitcher.classList.toggle('open');
     });
-  });
-</script>
+
+    document.addEventListener('click', (e) => {
+      if (!langSwitcher.contains(e.target)) {
+        langSwitcher.classList.remove('open');
+      }
+    });
+
+    langItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const lang = item.getAttribute('data-lang');
+        changeLanguage(lang); // recharge la page avec la bonne langue
+      });
+    });
+
+    // Au chargement : synchronise le bouton avec la langue active (cookie)
+    window.addEventListener('DOMContentLoaded', () => {
+      const match = document.cookie.match(/googtrans=\/en\/(\w+)/);
+      const activeLang = match ? match[1] : 'en';
+      currentLangLabel.textContent = activeLang.toUpperCase();
+      langItems.forEach(i => {
+        i.classList.toggle('active', i.getAttribute('data-lang') === activeLang);
+      });
+    });
+  </script>
 <script>
   (function () {
     var themeBtn = document.getElementById('themeToggle');

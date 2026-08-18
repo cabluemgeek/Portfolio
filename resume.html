@@ -3,6 +3,12 @@
 
 <head>
   <meta charset="utf-8">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    })();
+  </script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Resume - Kamelia ZENATI</title>
   <meta name="description" content="">
@@ -35,8 +41,8 @@
       gap: 8px;
       margin-top: 14px;
       padding: 10px 22px;
-      background-color: #4b3f72; /* purple, matches sidebar theme */
-      color: #fff;
+      background-color: #e8823c; /* orange, matches site accent */
+      color: #0d1117;
       font-size: 15px;
       font-weight: 500;
       border-radius: 50px;
@@ -44,8 +50,8 @@
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
     .cv-download-btn:hover {
-      background-color: #3a3059;
-      color: #fff;
+      background-color: #d9762f;
+      color: #0d1117;
       transform: translateY(-2px);
     }
     .cv-download-btn i {
@@ -84,6 +90,11 @@
         <a href="https://github.com/cabluemgeek" class="github"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
+
+      <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="Toggle light and dark theme" title="Toggle light / dark theme">
+        <i class="bi bi-moon-stars-fill"></i>
+        <i class="bi bi-sun-fill"></i>
+      </button>
 <!-- Bouton traducteur personnalisé -->
 <div class="lang-switcher">
   <button class="lang-switcher-btn" id="langBtn" type="button">
@@ -362,6 +373,18 @@
       i.classList.toggle('active', i.getAttribute('data-lang') === activeLang);
     });
   });
+</script>
+<script>
+  (function () {
+    var themeBtn = document.getElementById('themeToggle');
+    if (!themeBtn) return;
+    themeBtn.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
 </script>
 </body>
 

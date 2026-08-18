@@ -3,6 +3,12 @@
 
 <head>
   <meta charset="utf-8">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    })();
+  </script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Multilingual Sentiment Analysis - Project Details</title>
   <meta name="description" content="Multilingual (French/English/Algerian Arabic) customer review sentiment classification with a live app.">
@@ -139,7 +145,7 @@
     .pd-table th,
     .pd-table td {
       padding: 8px 10px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(242, 242, 240, 0.1);
       text-align: left;
     }
     .pd-table th {
@@ -182,6 +188,11 @@
         <a href="https://github.com/cabluemgeek" class="github"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/zenatik/" class="linkedin"><i class="bi bi-linkedin"></i></a>
       </div>
+
+      <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="Toggle light and dark theme" title="Toggle light / dark theme">
+        <i class="bi bi-moon-stars-fill"></i>
+        <i class="bi bi-sun-fill"></i>
+      </button>
 <!-- Bouton traducteur personnalisé -->
 <div class="lang-switcher">
   <button class="lang-switcher-btn" id="langBtn" type="button">
@@ -239,7 +250,7 @@
 <!-- Live interactive dashboard embed -->
             <div class="mt-4" data-aos="fade-up" data-aos-delay="150">
               <h3 class="mb-3">Interactive dashboard</h3>
-              <div style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+              <div style="border: 1px solid #30363d; border-radius: 8px; overflow: hidden;">
                 <iframe
                   src="https://cabluemgeek.github.io/AI-Powered-Sentiment-Analysis-of-Customer-Feedback/interactive-dashboard.html"
                   width="100%"
@@ -341,7 +352,7 @@
                     <tr><td>MARBERT</td><td>Arabic subset</td><td>1.000*</td></tr>
                   </tbody>
                 </table>
-                <p style="font-size:13px; color:#777;">*Arabic-subset validation split is small (~74 rows), so these scores are less statistically robust than the full-dataset results.</p>
+                <p style="font-size:13px; color:#9a9a9a;">*Arabic-subset validation split is small (~74 rows), so these scores are less statistically robust than the full-dataset results.</p>
                 <p>The classical TF-IDF + Logistic Regression baseline beat every transformer on French/English text — while being far smaller and faster to load, which directly shaped the deployment architecture above.</p>
               </div>
             </div>
@@ -474,6 +485,18 @@
       i.classList.toggle('active', i.getAttribute('data-lang') === activeLang);
     });
   });
+</script>
+<script>
+  (function () {
+    var themeBtn = document.getElementById('themeToggle');
+    if (!themeBtn) return;
+    themeBtn.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
 </script>
 </body>
 
