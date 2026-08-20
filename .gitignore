@@ -1,1 +1,13 @@
-assets/medias/videos/risk_dash_demo.mp4
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+
+# Fichiers de travail non destinés au repo (ex: PSD sources)
+*.psd
+
+# Vidéos brutes non compressées (garder uniquement les versions optimisées commitées)
+assets/medias/videos/*_raw.mp4
