@@ -142,11 +142,14 @@
                 </div>
               </div><!-- End Info Item -->
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37871.60342892393!2d2.0043334583616548!3d49.037352086029564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6f4c72416d693%3A0x40b82c3688b34e0!2sCergy!5e1!3m2!1sen!2sfr!4v1783672929181!5m2!1sen!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>            </div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37871.60342892393!2d2.0043334583616548!3d49.037352086029564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6f4c72416d693%3A0x40b82c3688b34e0!2sCergy!5e1!3m2!1sen!2sfr!4v1783672929181!5m2!1sen!2sfr" style="border:0; width:100%; height:400px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>            </div>
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form action="https://formspree.io/f/myegolll" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <input type="hidden" name="_next" value="https://cabluemgeek.github.io/Portfolio/contact.html">
+              <input type="hidden" name="_subject" value="Nouveau message depuis ton portfolio">
+
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -170,10 +173,6 @@
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
                   <button type="submit">Send Message</button>
                 </div>
 
@@ -215,7 +214,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
